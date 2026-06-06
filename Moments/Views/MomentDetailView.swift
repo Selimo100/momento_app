@@ -16,6 +16,8 @@ struct MomentDetailView: View {
     @State private var showDeleteConfirmation = false
     @State private var showPermissionAlert = false
     @State private var permissionMessage = ""
+    @State private var showTimeCapsuleSheet = false
+    @State private var showUnlockEarlyConfirmation = false
 
     var body: some View {
         ScrollView {
@@ -23,7 +25,7 @@ struct MomentDetailView: View {
                 MomentHeroView(moment: moment)
                     .ignoresSafeArea(edges: .top)
 
-                contentStack
+                capsuleContentView
                     .padding(.top, 32)
                     .padding(.bottom, 100)
                     .background(Color(.systemGroupedBackground))
@@ -54,8 +56,19 @@ struct MomentDetailView: View {
                     Button { showEditSheet = true } label: {
                         Label("Edit Moment", systemImage: "pencil")
                     }
-                    Button { prepareExport() } label: {
-                        Label("Export to Photos", systemImage: "square.and.arrow.up")
+                    if !moment.isTimeCapsule {
+                        Button { showTimeCapsuleSheet = true } label: {
+                            Label("Open Later", systemImage: "lock")
+                        }
+                    } else {
+                        Button { showUnlockEarlyConfirmation = true } label: {
+                            Label("Unlock Early", systemImage: "lock.open")
+                        }
+                    }
+                    if !moment.isLocked {
+                        Button { prepareExport() } label: {
+                            Label("Export to Photos", systemImage: "square.and.arrow.up")
+                        }
                     }
                     Divider()
                     Button(role: .destructive) {
@@ -75,6 +88,12 @@ struct MomentDetailView: View {
         // MARK: Sheets & Pickers
         .sheet(isPresented: $showEditSheet) {
             MomentFormView(mode: .edit(moment))
+        }
+        .sheet(isPresented: $showTimeCapsuleSheet) {
+            TimeCapsuleSheetView(moment: moment) { date in
+                sealMoment(unlockDate: date)
+                showTimeCapsuleSheet = false
+            }
         }
         .photosPicker(
             isPresented: $viewModel.showingPhotoPicker,
@@ -102,7 +121,7 @@ struct MomentDetailView: View {
             )
             .presentationDetents([.medium, .large])
         }
-        .sheet(isPresented: $viewModel.showingPhotoDetail) {
+        .fullScreenCover(isPresented: $viewModel.showingPhotoDetail) {
             if let photo = viewModel.selectedPhoto {
                 PhotoDetailView(
                     moment: moment,
@@ -145,9 +164,38 @@ struct MomentDetailView: View {
         } message: {
             Text("This removes the moment and its photo references. Your original photos in Apple Photos are not affected.")
         }
+        .confirmationDialog(
+            "Unlock this time capsule early?",
+            isPresented: $showUnlockEarlyConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Unlock Early", role: .destructive) {
+                unlockMoment()
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This will reveal the memory before its scheduled date and remove the seal.")
+        }
     }
 
-    // MARK: Content
+    // MARK: Conditional content
+
+    @ViewBuilder
+    private var capsuleContentView: some View {
+        if moment.isLocked {
+            TimeCapsuleLockedView(moment: moment) {
+                showUnlockEarlyConfirmation = true
+            }
+        } else if moment.isReadyToReopen {
+            TimeCapsuleReadyView(moment: moment) {
+                unlockMoment()
+            }
+        } else {
+            contentStack
+        }
+    }
+
+    // MARK: Normal content
 
     private var contentStack: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -300,5 +348,28 @@ struct MomentDetailView: View {
         }
         viewModel.exportAlbumName = viewModel.defaultAlbumName(for: moment, prefix: albumPrefix)
         viewModel.showingExportSheet = true
+    }
+
+    private func sealMoment(unlockDate: Date) {
+        moment.isTimeCapsule = true
+        moment.unlockDate = unlockDate
+        moment.lockedAt = .now
+        moment.updatedAt = .now
+        try? context.save()
+        Task {
+            let granted = await TimeCapsuleService.requestNotificationPermission()
+            if granted {
+                TimeCapsuleService.scheduleUnlockNotification(for: moment)
+            }
+        }
+    }
+
+    private func unlockMoment() {
+        TimeCapsuleService.cancelNotification(for: moment)
+        moment.isTimeCapsule = false
+        moment.unlockDate = nil
+        moment.lockedAt = nil
+        moment.updatedAt = .now
+        try? context.save()
     }
 }

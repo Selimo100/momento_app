@@ -2,12 +2,13 @@ import SwiftUI
 
 struct MomentHeroView: View {
     let moment: Moment
+    @AppStorage("accentColorHex") private var accentColorHex = "a0c1b9"
 
     var body: some View {
         ZStack(alignment: .bottom) {
             coverBackground
 
-            // Multi-stop scrim so the bottom is always readable
+            // Multi-stop scrim
             LinearGradient(
                 stops: [
                     .init(color: .clear, location: 0.0),
@@ -19,28 +20,46 @@ struct MomentHeroView: View {
                 endPoint: .bottom
             )
 
+            // Centre lock icon when sealed
+            if moment.isLocked {
+                Image(systemName: "lock.fill")
+                    .font(.system(size: 48, weight: .light))
+                    .foregroundStyle(.white.opacity(0.6))
+                    .shadow(color: .black.opacity(0.3), radius: 8, y: 4)
+            }
+
             // Info overlay
             VStack(alignment: .leading, spacing: 8) {
-                // Badges
                 HStack(spacing: 8) {
-                    if moment.photos.count > 0 {
-                        heroBadge(
-                            icon: "photo.stack",
-                            text: "\(moment.photos.count) \(moment.photos.count == 1 ? "photo" : "photos")"
-                        )
-                    }
-                    if moment.favoriteCount > 0 {
-                        heroBadge(icon: "heart.fill", text: "\(moment.favoriteCount)", tint: .pink)
+                    if moment.isLocked {
+                        heroBadge(icon: "lock.fill", text: "Sealed")
+                    } else if moment.isReadyToReopen {
+                        heroBadge(icon: "gift.fill", text: "Ready to Reopen",
+                                  tint: Color(hex: accentColorHex))
+                    } else {
+                        if moment.photos.count > 0 {
+                            heroBadge(
+                                icon: "photo.stack",
+                                text: "\(moment.photos.count) \(moment.photos.count == 1 ? "photo" : "photos")"
+                            )
+                        }
+                        if moment.favoriteCount > 0 {
+                            heroBadge(icon: "heart.fill", text: "\(moment.favoriteCount)", tint: .pink)
+                        }
                     }
                 }
 
                 Text(moment.title)
-                    .font(.system(size: 30, weight: .bold, design: .default))
+                    .font(.system(size: 30, weight: .bold))
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 4, y: 2)
                     .lineLimit(2)
 
-                if let dateText = moment.dateDisplay {
+                if moment.isLocked, let unlockDate = moment.unlockDate {
+                    Text("Opens \(DateFormatter.momentDate.string(from: unlockDate))")
+                        .font(.subheadline.weight(.medium))
+                        .foregroundStyle(.white.opacity(0.85))
+                } else if let dateText = moment.dateDisplay {
                     Text(dateText)
                         .font(.subheadline.weight(.medium))
                         .foregroundStyle(.white.opacity(0.85))
@@ -63,6 +82,13 @@ struct MomentHeroView: View {
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .clipped()
+            .blur(radius: moment.isLocked ? 16 : 0)
+            .overlay {
+                if moment.isLocked {
+                    Color.black.opacity(0.25)
+                }
+            }
+            .animation(.easeInOut(duration: 0.3), value: moment.isLocked)
         } else {
             LinearGradient(
                 colors: [Color(.systemGray4), Color(.systemGray5)],
@@ -71,13 +97,15 @@ struct MomentHeroView: View {
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay {
-                VStack(spacing: 10) {
-                    Image(systemName: "photo.on.rectangle.angled")
-                        .font(.system(size: 52, weight: .light))
-                        .foregroundStyle(.tertiary)
-                    Text("No cover photo")
-                        .font(.caption)
-                        .foregroundStyle(.tertiary)
+                if !moment.isTimeCapsule {
+                    VStack(spacing: 10) {
+                        Image(systemName: "photo.on.rectangle.angled")
+                            .font(.system(size: 52, weight: .light))
+                            .foregroundStyle(.tertiary)
+                        Text("No cover photo")
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
+                    }
                 }
             }
         }

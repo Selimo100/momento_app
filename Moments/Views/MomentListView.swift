@@ -11,6 +11,14 @@ struct MomentListView: View {
     @State private var showDeleteConfirmation = false
     @State private var navigateToNewMoment: Moment?
 
+    @AppStorage("accentColorHex") private var accentColorHex = "a0c1b9"
+
+    // MARK: Computed
+
+    private var readyMoments: [Moment] {
+        moments.filter { $0.isReadyToReopen }
+    }
+
     var body: some View {
         NavigationStack {
             Group {
@@ -55,6 +63,8 @@ struct MomentListView: View {
         }
     }
 
+    // MARK: Empty state
+
     private var emptyState: some View {
         VStack {
             Spacer()
@@ -70,9 +80,16 @@ struct MomentListView: View {
         }
     }
 
+    // MARK: Moment grid
+
     private var momentGrid: some View {
         ScrollView {
             LazyVStack(spacing: 16) {
+                if !readyMoments.isEmpty {
+                    readyToReopenBanner
+                        .padding(.top, 4)
+                }
+
                 ForEach(moments) { moment in
                     NavigationLink(destination: MomentDetailView(moment: moment)) {
                         MomentCardView(moment: moment)
@@ -97,5 +114,64 @@ struct MomentListView: View {
             .padding(.vertical, 12)
         }
         .background(Color(.systemGroupedBackground))
+    }
+
+    // MARK: Ready-to-reopen banner
+
+    private var readyToReopenBanner: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Label("Ready to Reopen", systemImage: "gift")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(Color(hex: accentColorHex))
+                .textCase(.uppercase)
+                .tracking(0.6)
+                .padding(.horizontal, 4)
+
+            ForEach(readyMoments) { moment in
+                NavigationLink(destination: MomentDetailView(moment: moment)) {
+                    readyBannerCard(moment)
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(16)
+        .background(Color(hex: accentColorHex).opacity(0.08))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color(hex: accentColorHex).opacity(0.2), lineWidth: 1)
+        )
+    }
+
+    private func readyBannerCard(_ moment: Moment) -> some View {
+        HStack(spacing: 14) {
+            ZStack {
+                Circle()
+                    .fill(Color(hex: accentColorHex).opacity(0.15))
+                    .frame(width: 44, height: 44)
+                Image(systemName: "gift.fill")
+                    .font(.system(size: 18))
+                    .foregroundStyle(Color(hex: accentColorHex))
+            }
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text(moment.title)
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(.primary)
+                    .lineLimit(1)
+                Text("Tap to reopen this memory")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            Spacer()
+
+            Image(systemName: "chevron.right")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(.tertiary)
+        }
+        .padding(12)
+        .background(Color(.secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
     }
 }

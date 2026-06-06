@@ -23,6 +23,10 @@ final class Moment {
     var hasBeenExported: Bool = false
     var lastExportedAt: Date?
 
+    var isTimeCapsule: Bool = false
+    var unlockDate: Date? = nil
+    var lockedAt: Date? = nil
+
     @Relationship(deleteRule: .cascade, inverse: \MomentPhoto.moment)
     var photos: [MomentPhoto]
 
@@ -42,6 +46,16 @@ final class Moment {
         self.createdAt = .now
         self.updatedAt = .now
         self.photos = []
+    }
+
+    var isLocked: Bool {
+        guard isTimeCapsule, let unlockDate else { return false }
+        return unlockDate > Date.now
+    }
+
+    var isReadyToReopen: Bool {
+        guard isTimeCapsule, let unlockDate else { return false }
+        return unlockDate <= Date.now
     }
 
     var favoriteCount: Int {

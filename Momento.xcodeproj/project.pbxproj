@@ -44,6 +44,10 @@
 		A5B6C7D8E9F0A1B2C3D4E5F6 /* MomentCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A6B7C8D9E0F1A2B3C4D5E6 /* MomentCompletion.swift */; };
 		A6B7C8D9E0F1A2B3C4D5E6F7 /* MomentCompletionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7B8C9D0E1F2A3B4C5D6E7 /* MomentCompletionCard.swift */; };
 		F7A8B9C0D1E2F3A4B5C6D7E8 /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9B0C1D2E3F4A5B6C7D8E9 /* ContactPickerView.swift */; };
+		BB001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift */; };
+		BB002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift */; };
+		BB003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift */; };
+		BB004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +90,10 @@
 		F5A6B7C8D9E0F1A2B3C4D5E6 /* MomentCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletion.swift; sourceTree = "<group>"; };
 		F6A7B8C9D0E1F2A3B4C5D6E7 /* MomentCompletionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletionCard.swift; sourceTree = "<group>"; };
 		F8A9B0C1D2E3F4A5B6C7D8E9 /* ContactPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerView.swift; sourceTree = "<group>"; };
+		AA001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleService.swift; sourceTree = "<group>"; };
+		AA002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleSheetView.swift; sourceTree = "<group>"; };
+		AA003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleLockedView.swift; sourceTree = "<group>"; };
+		AA004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleReadyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +151,7 @@
 				248E3A6C10908E132E0A4AE9 /* ImageLoadingService.swift */,
 				A94125841A807E0C1EEE16C6 /* PhotoExportService.swift */,
 				C45265D3DCEC4C042C763BC7 /* PhotoLibraryService.swift */,
+				AA001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -183,6 +192,8 @@
 				E0770898CB9A732422DFE6AB /* PrimaryButton.swift */,
 				7074AC0E6A89E0517733ACEE /* SectionCard.swift */,
 				C2B3D4E5F6071829304A5B6D /* StoryCardView.swift */,
+				AA003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift */,
+				AA004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -198,6 +209,7 @@
 				4476BCBB0019D68D3266B3BA /* PhotoDetailView.swift */,
 				0EE43C99E939A92CF9E1FA64 /* RootView.swift */,
 				4F18C89FDF5042B476267194 /* SettingsView.swift */,
+				AA002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,6 +344,10 @@
 				A5B6C7D8E9F0A1B2C3D4E5F6 /* MomentCompletion.swift in Sources */,
 				A6B7C8D9E0F1A2B3C4D5E6F7 /* MomentCompletionCard.swift in Sources */,
 				F7A8B9C0D1E2F3A4B5C6D7E8 /* ContactPickerView.swift in Sources */,
+				BB001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift in Sources */,
+				BB002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift in Sources */,
+				BB003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift in Sources */,
+				BB004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 private let defaultAccentHex = "a0c1b9"
 
@@ -6,8 +7,15 @@ struct SettingsView: View {
     @AppStorage("albumPrefix") private var albumPrefix = "Momento –"
     @AppStorage("accentColorHex") private var accentColorHex = defaultAccentHex
 
+    @Environment(\.modelContext) private var context
+    @Query private var allMoments: [Moment]
+
     @State private var pickerColor: Color = Color(hex: defaultAccentHex)
     @State private var pickerSynced = false
+
+    private var capsuleMoments: [Moment] {
+        allMoments.filter { $0.isTimeCapsule }.sorted { ($0.unlockDate ?? .now) < ($1.unlockDate ?? .now) }
+    }
 
     private var appVersion: String {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
@@ -51,6 +59,57 @@ struct SettingsView: View {
                     Text("Appearance")
                 } footer: {
                     Text("The accent color is used for buttons, toggles, and interactive elements throughout the app.")
+                }
+
+                Section {
+                    if capsuleMoments.isEmpty {
+                        Text("No active time capsules")
+                            .font(.subheadline)
+                            .foregroundStyle(.tertiary)
+                    } else {
+                        ForEach(capsuleMoments) { moment in
+                            HStack(spacing: 12) {
+                                Image(systemName: moment.isLocked ? "lock.fill" : "gift.fill")
+                                    .font(.system(size: 15))
+                                    .foregroundStyle(moment.isLocked ? .secondary : Color(hex: accentColorHex))
+                                    .frame(width: 22)
+
+                                VStack(alignment: .leading, spacing: 3) {
+                                    Text(moment.title)
+                                        .font(.subheadline.weight(.medium))
+                                        .lineLimit(1)
+                                    if moment.isLocked, let date = moment.unlockDate {
+                                        Text("Unlocks \(DateFormatter.momentDate.string(from: date))")
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    } else if moment.isReadyToReopen {
+                                        Text("Ready to reopen")
+                                            .font(.caption)
+                                            .foregroundStyle(Color(hex: accentColorHex))
+                                    }
+                                }
+
+                                Spacer()
+
+                                if moment.isLocked {
+                                    Button("Force Ready") {
+                                        moment.unlockDate = Calendar.current.date(byAdding: .second, value: -1, to: .now)
+                                        moment.updatedAt = .now
+                                        try? context.save()
+                                    }
+                                    .font(.caption.weight(.semibold))
+                                    .buttonStyle(.bordered)
+                                    .controlSize(.small)
+                                    .tint(.orange)
+                                }
+                            }
+                            .padding(.vertical, 2)
+                        }
+                    }
+                } header: {
+                    Text("Developer")
+                } footer: {
+                    Text("Force a locked time capsule to become ready to reopen without waiting for the unlock date.")
                 }
 
                 Section {
