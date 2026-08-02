@@ -7,121 +7,121 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0253A363D443174454C2783C /* PrivacyLockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B5DBD3F73E048D0A4B57B /* PrivacyLockService.swift */; };
 		095D7078F7B286846DD24F81 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0770898CB9A732422DFE6AB /* PrimaryButton.swift */; };
+		09C90DD335CAE3501E171A5B /* MomentCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E1B09C2F922385FB66295 /* MomentCompletion.swift */; };
 		1AAB9EDAA75ADCD679AE5167 /* MomentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E775CD24032600B4506DEB7 /* MomentFormView.swift */; };
 		2DF224F86D65A2B52F23CA6C /* DateFormatter+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E5AB01022AAFC68DCDE2F /* DateFormatter+App.swift */; };
 		2FB31B423353431E2AC442C4 /* MomentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877C51EECC4A47081A2FB21 /* MomentDetailView.swift */; };
+		307658F153B005DE1F203C6C /* PrivacyLockedStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD340688AE065DEB9DCAE43 /* PrivacyLockedStateView.swift */; };
 		3ABCFB9E51AF25E73B5F6B5D /* PermissionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417179B682EA45F4A5A8C092 /* PermissionHelpers.swift */; };
+		405EA9002ED921961E335911 /* StoryPhotoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D1E06CFFD69DD5B69CC57E /* StoryPhotoLayoutView.swift */; };
 		43661F34D5D33DC81A272DB6 /* PhotoExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94125841A807E0C1EEE16C6 /* PhotoExportService.swift */; };
 		4376B5E64E3837452CA2F21B /* MomentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911F86B45F38648912D14BC3 /* MomentDetailViewModel.swift */; };
+		480193E525B8E2DD4544C86D /* LayoutTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D2D3A71224378888967803 /* LayoutTypePicker.swift */; };
+		48D82D63FDC802E2009D3A55 /* StoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B68A4CB1B384218BD28A9B /* StoryCardView.swift */; };
 		4AB292BF5EF91A7923553FDB /* MomentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42168FE8B0D5EC1085E35E1A /* MomentCardView.swift */; };
 		4BFF638D046F25B0A4ADAEDC /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71033A062913E7FB3EEFD925 /* PhotosUI.framework */; };
 		4CCB8EB1452EE2C097B0BC9E /* MomentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F97CCFD31C7AFBA5B16DA9 /* MomentListViewModel.swift */; };
 		4EB00CD649FF101EE1B5EB34 /* AssetThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A286D766E33DFDDDCE63E7EF /* AssetThumbnailView.swift */; };
 		503D25BAA8F6DD219A9E54E6 /* MomentPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B887D4FDA400538C85206C4 /* MomentPhoto.swift */; };
+		537BB41F5931569C3C4E1CC4 /* FavoritesOnlyLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89484C9C57F158C070A697B6 /* FavoritesOnlyLayoutView.swift */; };
 		54CE7CA58CD34D677C4A5B34 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4476BCBB0019D68D3266B3BA /* PhotoDetailView.swift */; };
+		5AD0C7DB140E146193461076 /* BeforeAfterLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A58BE3748A44DBF4D0DC4 /* BeforeAfterLayoutView.swift */; };
 		5C1219348AC3582368CEE217 /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A0E22B792B7D89F4B86D3 /* Moment.swift */; };
 		5C38FE9C9ECD250CEF91F8CC /* MomentHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F436DDF34D4F08FC3131CD /* MomentHeroView.swift */; };
+		6FD3FF2C6E4A07D929C1D124 /* TimeCapsuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209CFE770BE5D8579A95F08C /* TimeCapsuleService.swift */; };
 		730DEF577D975919E18D6332 /* ImageLoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248E3A6C10908E132E0A4AE9 /* ImageLoadingService.swift */; };
 		7ACDB4EB83863C32598EF05C /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1023FB507B915A1E613DCCB /* EmptyStateView.swift */; };
+		7C9BFDAA7E79D1981E087B3B /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F7C13085161A803C7D5AC2 /* ContactPickerView.swift */; };
 		80905D5826477874B18B2480 /* SectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7074AC0E6A89E0517733ACEE /* SectionCard.swift */; };
 		8A47AB1F7F2AC1006481F2D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C47BA01CD23609EA4BD135C9 /* Assets.xcassets */; };
 		8AAF2EE142286C6F50853E16 /* MomentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D762502A4C8A12BEF9B89A27 /* MomentsApp.swift */; };
 		8AD5B5FF5EF9E5254CF0A839 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE43C99E939A92CF9E1FA64 /* RootView.swift */; };
+		8CD74B577E2BCC050238C65A /* CollagePhotoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E42ED6F19AD1296BCD64010 /* CollagePhotoLayoutView.swift */; };
+		9067668A79D432224340CD58 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE3660A0DE58CE056879638 /* String+Extensions.swift */; };
+		90771548C70983C0D9E840C7 /* TimeCapsuleSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B071AA57A978F3390E40B0F4 /* TimeCapsuleSheetView.swift */; };
 		90E1A801B469D04A7F979E1B /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAF0AB99806BB8FD02C8BBD /* Color+Hex.swift */; };
+		918E2673391FB5167C7938F9 /* MomentLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC018543CA44F0191F2EC9EF /* MomentLayoutType.swift */; };
+		97991D5C662A22C36AFBDA6D /* MoodChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0158931225922EF5B79FD2DA /* MoodChipView.swift */; };
+		9CFC86166F0005D3824C6874 /* MomentPhotoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205BBDDFAC344EBE60839DE /* MomentPhotoSectionView.swift */; };
 		9E515A8694158C27EA17A423 /* MomentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16D06578DF62E5498E4358F /* MomentListView.swift */; };
 		A455797BB43B3894E01A8D00 /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31A930E2F56A28F86F943CD /* PhotoGridView.swift */; };
-		A5B6C7D8E9F0A1B2C3D4E5F6 /* MomentCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A6B7C8D9E0F1A2B3C4D5E6 /* MomentCompletion.swift */; };
-		A6B7C8D9E0F1A2B3C4D5E6F7 /* MomentCompletionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7B8C9D0E1F2A3B4C5D6E7 /* MomentCompletionCard.swift */; };
+		A61918DDDB1A5DB0B9C6F445 /* TimeCapsuleReadyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7458DE668DDF8858D81820C9 /* TimeCapsuleReadyView.swift */; };
 		ADD3321288B1625FF104F8BA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18C89FDF5042B476267194 /* SettingsView.swift */; };
-		B1A2C3D4E5F60718293A4B5C /* MoodChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F60718293A4B5D /* MoodChipView.swift */; };
-		BB000BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleListView.swift */; };
-		BB001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift */; };
-		BB00FACE000000000000A001 /* RandomMemoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00FACE000000000000A001 /* RandomMemoryService.swift */; };
-		AC0000000000000000000200 /* PrivacyLockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000200 /* PrivacyLockService.swift */; };
-		AC0000000000000000000201 /* PrivacyLockedStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000201 /* PrivacyLockedStateView.swift */; };
-		AC0000000000000000000202 /* PrivateMomentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000202 /* PrivateMomentsView.swift */; };
-		FF0000000000000000000100 /* MomentPhotoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000100 /* MomentPhotoSectionView.swift */; };
-		FF0000000000000000000101 /* StoryPhotoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000101 /* StoryPhotoLayoutView.swift */; };
-		FF0000000000000000000102 /* TimelinePhotoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000102 /* TimelinePhotoLayoutView.swift */; };
-		FF0000000000000000000103 /* CollagePhotoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000103 /* CollagePhotoLayoutView.swift */; };
-		FF0000000000000000000104 /* FavoritesOnlyLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000104 /* FavoritesOnlyLayoutView.swift */; };
-		FF0000000000000000000105 /* PhotoDumpLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000105 /* PhotoDumpLayoutView.swift */; };
-		FF0000000000000000000106 /* BeforeAfterLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000106 /* BeforeAfterLayoutView.swift */; };
-		FF0000000000000000000107 /* LayoutTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000107 /* LayoutTypePicker.swift */; };
-		FF0000000000000000000164 /* MomentLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000164 /* MomentLayoutType.swift */; };
-		BB002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift */; };
-		BB003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift */; };
-		BB004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift */; };
+		AE95FC3F302657B31C6EBFA1 /* PhotoDumpLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2ABE309C40585381B489BC /* PhotoDumpLayoutView.swift */; };
 		BD39C2CECA76E4B048F2C822 /* PhotoThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD06BDE920949C9D699BEB /* PhotoThumbnailView.swift */; };
-		C2B3D4E5F6071829304A5B6C /* StoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B3D4E5F6071829304A5B6D /* StoryCardView.swift */; };
+		C8EA3B34F7002BA16DDA667C /* TimeCapsuleLockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CCA053DEC9CA4153C090DA /* TimeCapsuleLockedView.swift */; };
+		CB50D0C50B92914B9A61DCD2 /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A45C6A597AD839EEBB74692 /* LocationPickerView.swift */; };
 		D108AE5E01B0F986453FA04F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC8E25603896E76212AA3D9 /* Photos.framework */; };
-		D3C4E5F607182930415A6B7C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E5F607182930415A6B7D /* String+Extensions.swift */; };
+		D7810AB69B98F2C9282E4E17 /* PrivateMomentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF36DCA8E0B7657BB2E9CDA /* PrivateMomentsView.swift */; };
 		E49A0FA75D39D6E676DA49D6 /* GlassIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A190A5933117A5766B26F996 /* GlassIconButton.swift */; };
 		E4B486135B77D8AC056EE303 /* ExportSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7973F2A11A2862A2E8146D0 /* ExportSheetView.swift */; };
-		E4F5061728394A5B6C7D8E9F /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F5061728394A5B6C7D8EA0 /* LocationPickerView.swift */; };
-		F7A8B9C0D1E2F3A4B5C6D7E8 /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9B0C1D2E3F4A5B6C7D8E9 /* ContactPickerView.swift */; };
+		E65879BB81C50B79A8D7E9F9 /* TimelinePhotoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E435216D400D1F4649B40A /* TimelinePhotoLayoutView.swift */; };
+		E8A184E643A1C387DA9259B6 /* RandomMemoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482814CC7D0A64720D2B7319 /* RandomMemoryService.swift */; };
+		E8E3B9471703F27232529ECA /* MomentCompletionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D46CCF7661EDB5E9B0F3304 /* MomentCompletionCard.swift */; };
+		F2537E27A259F1D089D6DB95 /* TimeCapsuleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C4447EB2EED0DE1D314322 /* TimeCapsuleListView.swift */; };
 		FE2F372978AAB96B147BEE73 /* PhotoLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45265D3DCEC4C042C763BC7 /* PhotoLibraryService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0158931225922EF5B79FD2DA /* MoodChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChipView.swift; sourceTree = "<group>"; };
+		08D1E06CFFD69DD5B69CC57E /* StoryPhotoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPhotoLayoutView.swift; sourceTree = "<group>"; };
 		0EE43C99E939A92CF9E1FA64 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		203DEE64AF45F3251E76C213 /* Momento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		128E1B09C2F922385FB66295 /* MomentCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletion.swift; sourceTree = "<group>"; };
+		203DEE64AF45F3251E76C213 /* Momento.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		209CFE770BE5D8579A95F08C /* TimeCapsuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleService.swift; sourceTree = "<group>"; };
+		22D2D3A71224378888967803 /* LayoutTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutTypePicker.swift; sourceTree = "<group>"; };
 		248E3A6C10908E132E0A4AE9 /* ImageLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingService.swift; sourceTree = "<group>"; };
 		27F436DDF34D4F08FC3131CD /* MomentHeroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeroView.swift; sourceTree = "<group>"; };
+		2E42ED6F19AD1296BCD64010 /* CollagePhotoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollagePhotoLayoutView.swift; sourceTree = "<group>"; };
 		3877C51EECC4A47081A2FB21 /* MomentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentDetailView.swift; sourceTree = "<group>"; };
+		3CD340688AE065DEB9DCAE43 /* PrivacyLockedStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyLockedStateView.swift; sourceTree = "<group>"; };
+		3E2ABE309C40585381B489BC /* PhotoDumpLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDumpLayoutView.swift; sourceTree = "<group>"; };
+		3F2B5DBD3F73E048D0A4B57B /* PrivacyLockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyLockService.swift; sourceTree = "<group>"; };
 		3FAF0AB99806BB8FD02C8BBD /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		417179B682EA45F4A5A8C092 /* PermissionHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionHelpers.swift; sourceTree = "<group>"; };
 		42168FE8B0D5EC1085E35E1A /* MomentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCardView.swift; sourceTree = "<group>"; };
 		429A0E22B792B7D89F4B86D3 /* Moment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
 		4476BCBB0019D68D3266B3BA /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
+		482814CC7D0A64720D2B7319 /* RandomMemoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMemoryService.swift; sourceTree = "<group>"; };
+		4D46CCF7661EDB5E9B0F3304 /* MomentCompletionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletionCard.swift; sourceTree = "<group>"; };
 		4F18C89FDF5042B476267194 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5D0E5AB01022AAFC68DCDE2F /* DateFormatter+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+App.swift"; sourceTree = "<group>"; };
 		5FC8E25603896E76212AA3D9 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		65AD06BDE920949C9D699BEB /* PhotoThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoThumbnailView.swift; sourceTree = "<group>"; };
+		66B68A4CB1B384218BD28A9B /* StoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCardView.swift; sourceTree = "<group>"; };
+		69CCA053DEC9CA4153C090DA /* TimeCapsuleLockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleLockedView.swift; sourceTree = "<group>"; };
+		6A45C6A597AD839EEBB74692 /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
+		6BE3660A0DE58CE056879638 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		6C7A58BE3748A44DBF4D0DC4 /* BeforeAfterLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeAfterLayoutView.swift; sourceTree = "<group>"; };
 		7074AC0E6A89E0517733ACEE /* SectionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCard.swift; sourceTree = "<group>"; };
 		71033A062913E7FB3EEFD925 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		7205BBDDFAC344EBE60839DE /* MomentPhotoSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentPhotoSectionView.swift; sourceTree = "<group>"; };
+		7458DE668DDF8858D81820C9 /* TimeCapsuleReadyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleReadyView.swift; sourceTree = "<group>"; };
 		7B887D4FDA400538C85206C4 /* MomentPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentPhoto.swift; sourceTree = "<group>"; };
+		89484C9C57F158C070A697B6 /* FavoritesOnlyLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesOnlyLayoutView.swift; sourceTree = "<group>"; };
 		8E775CD24032600B4506DEB7 /* MomentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentFormView.swift; sourceTree = "<group>"; };
 		911F86B45F38648912D14BC3 /* MomentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentDetailViewModel.swift; sourceTree = "<group>"; };
 		A1023FB507B915A1E613DCCB /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		A190A5933117A5766B26F996 /* GlassIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassIconButton.swift; sourceTree = "<group>"; };
 		A286D766E33DFDDDCE63E7EF /* AssetThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetThumbnailView.swift; sourceTree = "<group>"; };
 		A94125841A807E0C1EEE16C6 /* PhotoExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoExportService.swift; sourceTree = "<group>"; };
-		AA000BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleListView.swift; sourceTree = "<group>"; };
-		AA001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleService.swift; sourceTree = "<group>"; };
-		AA00FACE000000000000A001 /* RandomMemoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMemoryService.swift; sourceTree = "<group>"; };
-		AB0000000000000000000200 /* PrivacyLockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyLockService.swift; sourceTree = "<group>"; };
-		AB0000000000000000000201 /* PrivacyLockedStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyLockedStateView.swift; sourceTree = "<group>"; };
-		AB0000000000000000000202 /* PrivateMomentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMomentsView.swift; sourceTree = "<group>"; };
-		EE0000000000000000000100 /* MomentPhotoSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentPhotoSectionView.swift; sourceTree = "<group>"; };
-		EE0000000000000000000101 /* StoryPhotoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPhotoLayoutView.swift; sourceTree = "<group>"; };
-		EE0000000000000000000102 /* TimelinePhotoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePhotoLayoutView.swift; sourceTree = "<group>"; };
-		EE0000000000000000000103 /* CollagePhotoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollagePhotoLayoutView.swift; sourceTree = "<group>"; };
-		EE0000000000000000000104 /* FavoritesOnlyLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesOnlyLayoutView.swift; sourceTree = "<group>"; };
-		EE0000000000000000000105 /* PhotoDumpLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDumpLayoutView.swift; sourceTree = "<group>"; };
-		EE0000000000000000000106 /* BeforeAfterLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeAfterLayoutView.swift; sourceTree = "<group>"; };
-		EE0000000000000000000107 /* LayoutTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutTypePicker.swift; sourceTree = "<group>"; };
-		EE0000000000000000000164 /* MomentLayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentLayoutType.swift; sourceTree = "<group>"; };
-		AA002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleSheetView.swift; sourceTree = "<group>"; };
-		AA003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleLockedView.swift; sourceTree = "<group>"; };
-		AA004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleReadyView.swift; sourceTree = "<group>"; };
-		B1A2C3D4E5F60718293A4B5D /* MoodChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChipView.swift; sourceTree = "<group>"; };
-		C2B3D4E5F6071829304A5B6D /* StoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCardView.swift; sourceTree = "<group>"; };
+		AAF36DCA8E0B7657BB2E9CDA /* PrivateMomentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMomentsView.swift; sourceTree = "<group>"; };
+		B071AA57A978F3390E40B0F4 /* TimeCapsuleSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleSheetView.swift; sourceTree = "<group>"; };
+		B6C4447EB2EED0DE1D314322 /* TimeCapsuleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleListView.swift; sourceTree = "<group>"; };
 		C45265D3DCEC4C042C763BC7 /* PhotoLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryService.swift; sourceTree = "<group>"; };
 		C47BA01CD23609EA4BD135C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D3C4E5F607182930415A6B7D /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		CC018543CA44F0191F2EC9EF /* MomentLayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentLayoutType.swift; sourceTree = "<group>"; };
 		D762502A4C8A12BEF9B89A27 /* MomentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsApp.swift; sourceTree = "<group>"; };
 		E0770898CB9A732422DFE6AB /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		E16D06578DF62E5498E4358F /* MomentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentListView.swift; sourceTree = "<group>"; };
-		E4F5061728394A5B6C7D8EA0 /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
+		E5F7C13085161A803C7D5AC2 /* ContactPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerView.swift; sourceTree = "<group>"; };
 		E7973F2A11A2862A2E8146D0 /* ExportSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSheetView.swift; sourceTree = "<group>"; };
 		F2F97CCFD31C7AFBA5B16DA9 /* MomentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentListViewModel.swift; sourceTree = "<group>"; };
 		F31A930E2F56A28F86F943CD /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
-		F5A6B7C8D9E0F1A2B3C4D5E6 /* MomentCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletion.swift; sourceTree = "<group>"; };
-		F6A7B8C9D0E1F2A3B4C5D6E7 /* MomentCompletionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletionCard.swift; sourceTree = "<group>"; };
+		F5E435216D400D1F4649B40A /* TimelinePhotoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePhotoLayoutView.swift; sourceTree = "<group>"; };
 		F821B2265AF2A81ABFC3619D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		F8A9B0C1D2E3F4A5B6C7D8E9 /* ContactPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,9 +149,9 @@
 		136B828B33058E6B84B9947E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EE0000000000000000000164 /* MomentLayoutType.swift */,
 				429A0E22B792B7D89F4B86D3 /* Moment.swift */,
-				F5A6B7C8D9E0F1A2B3C4D5E6 /* MomentCompletion.swift */,
+				128E1B09C2F922385FB66295 /* MomentCompletion.swift */,
+				CC018543CA44F0191F2EC9EF /* MomentLayoutType.swift */,
 				7B887D4FDA400538C85206C4 /* MomentPhoto.swift */,
 			);
 			path = Models;
@@ -177,12 +177,12 @@
 		79306A81E82E4CC1A417BE34 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				AB0000000000000000000200 /* PrivacyLockService.swift */,
 				248E3A6C10908E132E0A4AE9 /* ImageLoadingService.swift */,
 				A94125841A807E0C1EEE16C6 /* PhotoExportService.swift */,
 				C45265D3DCEC4C042C763BC7 /* PhotoLibraryService.swift */,
-				AA001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift */,
-				AA00FACE000000000000A001 /* RandomMemoryService.swift */,
+				3F2B5DBD3F73E048D0A4B57B /* PrivacyLockService.swift */,
+				482814CC7D0A64720D2B7319 /* RandomMemoryService.swift */,
+				209CFE770BE5D8579A95F08C /* TimeCapsuleService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -202,7 +202,7 @@
 				3FAF0AB99806BB8FD02C8BBD /* Color+Hex.swift */,
 				5D0E5AB01022AAFC68DCDE2F /* DateFormatter+App.swift */,
 				417179B682EA45F4A5A8C092 /* PermissionHelpers.swift */,
-				D3C4E5F607182930415A6B7D /* String+Extensions.swift */,
+				6BE3660A0DE58CE056879638 /* String+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -210,30 +210,30 @@
 		CDAF62D505A9A7EA94DFFF03 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				AB0000000000000000000201 /* PrivacyLockedStateView.swift */,
-				EE0000000000000000000100 /* MomentPhotoSectionView.swift */,
-				EE0000000000000000000101 /* StoryPhotoLayoutView.swift */,
-				EE0000000000000000000102 /* TimelinePhotoLayoutView.swift */,
-				EE0000000000000000000103 /* CollagePhotoLayoutView.swift */,
-				EE0000000000000000000104 /* FavoritesOnlyLayoutView.swift */,
-				EE0000000000000000000105 /* PhotoDumpLayoutView.swift */,
-				EE0000000000000000000106 /* BeforeAfterLayoutView.swift */,
-				EE0000000000000000000107 /* LayoutTypePicker.swift */,
 				A286D766E33DFDDDCE63E7EF /* AssetThumbnailView.swift */,
-				F8A9B0C1D2E3F4A5B6C7D8E9 /* ContactPickerView.swift */,
+				6C7A58BE3748A44DBF4D0DC4 /* BeforeAfterLayoutView.swift */,
+				2E42ED6F19AD1296BCD64010 /* CollagePhotoLayoutView.swift */,
+				E5F7C13085161A803C7D5AC2 /* ContactPickerView.swift */,
 				A1023FB507B915A1E613DCCB /* EmptyStateView.swift */,
+				89484C9C57F158C070A697B6 /* FavoritesOnlyLayoutView.swift */,
 				A190A5933117A5766B26F996 /* GlassIconButton.swift */,
+				22D2D3A71224378888967803 /* LayoutTypePicker.swift */,
 				42168FE8B0D5EC1085E35E1A /* MomentCardView.swift */,
-				F6A7B8C9D0E1F2A3B4C5D6E7 /* MomentCompletionCard.swift */,
+				4D46CCF7661EDB5E9B0F3304 /* MomentCompletionCard.swift */,
 				27F436DDF34D4F08FC3131CD /* MomentHeroView.swift */,
-				B1A2C3D4E5F60718293A4B5D /* MoodChipView.swift */,
+				7205BBDDFAC344EBE60839DE /* MomentPhotoSectionView.swift */,
+				0158931225922EF5B79FD2DA /* MoodChipView.swift */,
+				3E2ABE309C40585381B489BC /* PhotoDumpLayoutView.swift */,
 				F31A930E2F56A28F86F943CD /* PhotoGridView.swift */,
 				65AD06BDE920949C9D699BEB /* PhotoThumbnailView.swift */,
 				E0770898CB9A732422DFE6AB /* PrimaryButton.swift */,
+				3CD340688AE065DEB9DCAE43 /* PrivacyLockedStateView.swift */,
 				7074AC0E6A89E0517733ACEE /* SectionCard.swift */,
-				C2B3D4E5F6071829304A5B6D /* StoryCardView.swift */,
-				AA003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift */,
-				AA004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift */,
+				66B68A4CB1B384218BD28A9B /* StoryCardView.swift */,
+				08D1E06CFFD69DD5B69CC57E /* StoryPhotoLayoutView.swift */,
+				69CCA053DEC9CA4153C090DA /* TimeCapsuleLockedView.swift */,
+				7458DE668DDF8858D81820C9 /* TimeCapsuleReadyView.swift */,
+				F5E435216D400D1F4649B40A /* TimelinePhotoLayoutView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -241,17 +241,17 @@
 		D4D092BDE42CC4DD5336CE0B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AB0000000000000000000202 /* PrivateMomentsView.swift */,
 				E7973F2A11A2862A2E8146D0 /* ExportSheetView.swift */,
-				E4F5061728394A5B6C7D8EA0 /* LocationPickerView.swift */,
+				6A45C6A597AD839EEBB74692 /* LocationPickerView.swift */,
 				3877C51EECC4A47081A2FB21 /* MomentDetailView.swift */,
 				8E775CD24032600B4506DEB7 /* MomentFormView.swift */,
 				E16D06578DF62E5498E4358F /* MomentListView.swift */,
 				4476BCBB0019D68D3266B3BA /* PhotoDetailView.swift */,
+				AAF36DCA8E0B7657BB2E9CDA /* PrivateMomentsView.swift */,
 				0EE43C99E939A92CF9E1FA64 /* RootView.swift */,
 				4F18C89FDF5042B476267194 /* SettingsView.swift */,
-				AA000BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleListView.swift */,
-				AA002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift */,
+				B6C4447EB2EED0DE1D314322 /* TimeCapsuleListView.swift */,
+				B071AA57A978F3390E40B0F4 /* TimeCapsuleSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -309,7 +309,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2700;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					EDE475EC06EE1A45FD1DBE93 = {
 						DevelopmentTeam = "";
@@ -352,58 +352,58 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC0000000000000000000200 /* PrivacyLockService.swift in Sources */,
-				AC0000000000000000000201 /* PrivacyLockedStateView.swift in Sources */,
-				AC0000000000000000000202 /* PrivateMomentsView.swift in Sources */,
-				FF0000000000000000000100 /* MomentPhotoSectionView.swift in Sources */,
-				FF0000000000000000000101 /* StoryPhotoLayoutView.swift in Sources */,
-				FF0000000000000000000102 /* TimelinePhotoLayoutView.swift in Sources */,
-				FF0000000000000000000103 /* CollagePhotoLayoutView.swift in Sources */,
-				FF0000000000000000000104 /* FavoritesOnlyLayoutView.swift in Sources */,
-				FF0000000000000000000105 /* PhotoDumpLayoutView.swift in Sources */,
-				FF0000000000000000000106 /* BeforeAfterLayoutView.swift in Sources */,
-				FF0000000000000000000107 /* LayoutTypePicker.swift in Sources */,
-				FF0000000000000000000164 /* MomentLayoutType.swift in Sources */,
 				4EB00CD649FF101EE1B5EB34 /* AssetThumbnailView.swift in Sources */,
+				5AD0C7DB140E146193461076 /* BeforeAfterLayoutView.swift in Sources */,
+				8CD74B577E2BCC050238C65A /* CollagePhotoLayoutView.swift in Sources */,
 				90E1A801B469D04A7F979E1B /* Color+Hex.swift in Sources */,
+				7C9BFDAA7E79D1981E087B3B /* ContactPickerView.swift in Sources */,
 				2DF224F86D65A2B52F23CA6C /* DateFormatter+App.swift in Sources */,
 				7ACDB4EB83863C32598EF05C /* EmptyStateView.swift in Sources */,
 				E4B486135B77D8AC056EE303 /* ExportSheetView.swift in Sources */,
+				537BB41F5931569C3C4E1CC4 /* FavoritesOnlyLayoutView.swift in Sources */,
 				E49A0FA75D39D6E676DA49D6 /* GlassIconButton.swift in Sources */,
 				730DEF577D975919E18D6332 /* ImageLoadingService.swift in Sources */,
+				480193E525B8E2DD4544C86D /* LayoutTypePicker.swift in Sources */,
+				CB50D0C50B92914B9A61DCD2 /* LocationPickerView.swift in Sources */,
 				5C1219348AC3582368CEE217 /* Moment.swift in Sources */,
 				4AB292BF5EF91A7923553FDB /* MomentCardView.swift in Sources */,
+				09C90DD335CAE3501E171A5B /* MomentCompletion.swift in Sources */,
+				E8E3B9471703F27232529ECA /* MomentCompletionCard.swift in Sources */,
 				2FB31B423353431E2AC442C4 /* MomentDetailView.swift in Sources */,
 				4376B5E64E3837452CA2F21B /* MomentDetailViewModel.swift in Sources */,
 				1AAB9EDAA75ADCD679AE5167 /* MomentFormView.swift in Sources */,
 				5C38FE9C9ECD250CEF91F8CC /* MomentHeroView.swift in Sources */,
+				918E2673391FB5167C7938F9 /* MomentLayoutType.swift in Sources */,
 				9E515A8694158C27EA17A423 /* MomentListView.swift in Sources */,
 				4CCB8EB1452EE2C097B0BC9E /* MomentListViewModel.swift in Sources */,
 				503D25BAA8F6DD219A9E54E6 /* MomentPhoto.swift in Sources */,
+				9CFC86166F0005D3824C6874 /* MomentPhotoSectionView.swift in Sources */,
 				8AAF2EE142286C6F50853E16 /* MomentsApp.swift in Sources */,
+				97991D5C662A22C36AFBDA6D /* MoodChipView.swift in Sources */,
 				3ABCFB9E51AF25E73B5F6B5D /* PermissionHelpers.swift in Sources */,
 				54CE7CA58CD34D677C4A5B34 /* PhotoDetailView.swift in Sources */,
+				AE95FC3F302657B31C6EBFA1 /* PhotoDumpLayoutView.swift in Sources */,
 				43661F34D5D33DC81A272DB6 /* PhotoExportService.swift in Sources */,
 				A455797BB43B3894E01A8D00 /* PhotoGridView.swift in Sources */,
 				FE2F372978AAB96B147BEE73 /* PhotoLibraryService.swift in Sources */,
 				BD39C2CECA76E4B048F2C822 /* PhotoThumbnailView.swift in Sources */,
 				095D7078F7B286846DD24F81 /* PrimaryButton.swift in Sources */,
+				0253A363D443174454C2783C /* PrivacyLockService.swift in Sources */,
+				307658F153B005DE1F203C6C /* PrivacyLockedStateView.swift in Sources */,
+				D7810AB69B98F2C9282E4E17 /* PrivateMomentsView.swift in Sources */,
+				E8A184E643A1C387DA9259B6 /* RandomMemoryService.swift in Sources */,
 				8AD5B5FF5EF9E5254CF0A839 /* RootView.swift in Sources */,
 				80905D5826477874B18B2480 /* SectionCard.swift in Sources */,
 				ADD3321288B1625FF104F8BA /* SettingsView.swift in Sources */,
-				B1A2C3D4E5F60718293A4B5C /* MoodChipView.swift in Sources */,
-				C2B3D4E5F6071829304A5B6C /* StoryCardView.swift in Sources */,
-				D3C4E5F607182930415A6B7C /* String+Extensions.swift in Sources */,
-				E4F5061728394A5B6C7D8E9F /* LocationPickerView.swift in Sources */,
-				A5B6C7D8E9F0A1B2C3D4E5F6 /* MomentCompletion.swift in Sources */,
-				A6B7C8D9E0F1A2B3C4D5E6F7 /* MomentCompletionCard.swift in Sources */,
-				F7A8B9C0D1E2F3A4B5C6D7E8 /* ContactPickerView.swift in Sources */,
-				BB000BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleListView.swift in Sources */,
-				BB001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift in Sources */,
-				BB00FACE000000000000A001 /* RandomMemoryService.swift in Sources */,
-				BB002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift in Sources */,
-				BB003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift in Sources */,
-				BB004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift in Sources */,
+				48D82D63FDC802E2009D3A55 /* StoryCardView.swift in Sources */,
+				405EA9002ED921961E335911 /* StoryPhotoLayoutView.swift in Sources */,
+				9067668A79D432224340CD58 /* String+Extensions.swift in Sources */,
+				F2537E27A259F1D089D6DB95 /* TimeCapsuleListView.swift in Sources */,
+				C8EA3B34F7002BA16DDA667C /* TimeCapsuleLockedView.swift in Sources */,
+				A61918DDDB1A5DB0B9C6F445 /* TimeCapsuleReadyView.swift in Sources */,
+				6FD3FF2C6E4A07D929C1D124 /* TimeCapsuleService.swift in Sources */,
+				90771548C70983C0D9E840C7 /* TimeCapsuleSheetView.swift in Sources */,
+				E65879BB81C50B79A8D7E9F9 /* TimelinePhotoLayoutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +415,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Moments/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -422,11 +423,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.mogicato.Momento;
 				PRODUCT_NAME = Momento;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -435,6 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Moments/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -442,11 +445,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ch.mogicato.Momento;
 				PRODUCT_NAME = Momento;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -454,7 +458,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -490,7 +493,6 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -511,7 +513,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
@@ -522,7 +523,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -558,7 +558,6 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -572,7 +571,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 6.0;

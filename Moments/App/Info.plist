@@ -11,11 +11,21 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>NSContactsUsageDescription</key>
+	<string>Momento lets you pick people from your contacts to tag in a moment.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Momento needs access to your photo library so you can add photos to your moments.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
