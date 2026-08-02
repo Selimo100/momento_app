@@ -4,28 +4,18 @@ struct MomentHeroView: View {
     let moment: Moment
     @AppStorage("accentColorHex") private var accentColorHex = "a0c1b9"
 
+    @ScaledMetric(relativeTo: .largeTitle) private var heroHeight: CGFloat = 380
+
     var body: some View {
         ZStack(alignment: .bottom) {
-            coverBackground
-
-            // Multi-stop scrim
-            LinearGradient(
-                stops: [
-                    .init(color: .clear, location: 0.0),
-                    .init(color: .clear, location: 0.35),
-                    .init(color: .black.opacity(0.25), location: 0.6),
-                    .init(color: .black.opacity(0.65), location: 1.0)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-
             // Centre lock icon when sealed
             if moment.isLocked {
                 Image(systemName: "lock.fill")
                     .font(.system(size: 48, weight: .light))
                     .foregroundStyle(.white.opacity(0.6))
                     .shadow(color: .black.opacity(0.3), radius: 8, y: 4)
+                    .frame(maxHeight: .infinity)
+                    .accessibilityHidden(true)
             }
 
             // Info overlay
@@ -54,6 +44,8 @@ struct MomentHeroView: View {
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 4, y: 2)
                     .lineLimit(2)
+                    .minimumScaleFactor(0.7)
+                    .fixedSize(horizontal: false, vertical: true)
 
                 if moment.isLocked, let unlockDate = moment.unlockDate {
                     Text("Opens \(DateFormatter.momentDate.string(from: unlockDate))")
@@ -69,8 +61,31 @@ struct MomentHeroView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 28)
         }
-        .frame(height: 380)
+        // The cover lives in a background layer so its aspect-fill overflow
+        // never grows the hero's own layout size in either direction.
+        .frame(maxWidth: .infinity, alignment: .bottom)
+        .frame(height: heroHeight, alignment: .bottom)
+        .background {
+            ZStack {
+                coverBackground
+                scrim
+            }
+        }
         .clipped()
+        .accessibilityElement(children: .combine)
+    }
+
+    private var scrim: some View {
+        LinearGradient(
+            stops: [
+                .init(color: .clear, location: 0.0),
+                .init(color: .clear, location: 0.35),
+                .init(color: .black.opacity(0.25), location: 0.6),
+                .init(color: .black.opacity(0.65), location: 1.0)
+            ],
+            startPoint: .top,
+            endPoint: .bottom
+        )
     }
 
     @ViewBuilder

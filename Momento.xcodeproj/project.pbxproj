@@ -31,28 +31,42 @@
 		90E1A801B469D04A7F979E1B /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAF0AB99806BB8FD02C8BBD /* Color+Hex.swift */; };
 		9E515A8694158C27EA17A423 /* MomentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16D06578DF62E5498E4358F /* MomentListView.swift */; };
 		A455797BB43B3894E01A8D00 /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31A930E2F56A28F86F943CD /* PhotoGridView.swift */; };
-		ADD3321288B1625FF104F8BA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18C89FDF5042B476267194 /* SettingsView.swift */; };
-		BD39C2CECA76E4B048F2C822 /* PhotoThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD06BDE920949C9D699BEB /* PhotoThumbnailView.swift */; };
-		D108AE5E01B0F986453FA04F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC8E25603896E76212AA3D9 /* Photos.framework */; };
-		E49A0FA75D39D6E676DA49D6 /* GlassIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A190A5933117A5766B26F996 /* GlassIconButton.swift */; };
-		E4B486135B77D8AC056EE303 /* ExportSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7973F2A11A2862A2E8146D0 /* ExportSheetView.swift */; };
-		FE2F372978AAB96B147BEE73 /* PhotoLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45265D3DCEC4C042C763BC7 /* PhotoLibraryService.swift */; };
-		B1A2C3D4E5F60718293A4B5C /* MoodChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F60718293A4B5D /* MoodChipView.swift */; };
-		C2B3D4E5F6071829304A5B6C /* StoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B3D4E5F6071829304A5B6D /* StoryCardView.swift */; };
-		D3C4E5F607182930415A6B7C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E5F607182930415A6B7D /* String+Extensions.swift */; };
-		E4F5061728394A5B6C7D8E9F /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F5061728394A5B6C7D8EA0 /* LocationPickerView.swift */; };
 		A5B6C7D8E9F0A1B2C3D4E5F6 /* MomentCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A6B7C8D9E0F1A2B3C4D5E6 /* MomentCompletion.swift */; };
 		A6B7C8D9E0F1A2B3C4D5E6F7 /* MomentCompletionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7B8C9D0E1F2A3B4C5D6E7 /* MomentCompletionCard.swift */; };
-		F7A8B9C0D1E2F3A4B5C6D7E8 /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9B0C1D2E3F4A5B6C7D8E9 /* ContactPickerView.swift */; };
+		ADD3321288B1625FF104F8BA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18C89FDF5042B476267194 /* SettingsView.swift */; };
+		B1A2C3D4E5F60718293A4B5C /* MoodChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F60718293A4B5D /* MoodChipView.swift */; };
+		BB000BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleListView.swift */; };
 		BB001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift */; };
+		BB00FACE000000000000A001 /* RandomMemoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00FACE000000000000A001 /* RandomMemoryService.swift */; };
+		AC0000000000000000000200 /* PrivacyLockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000200 /* PrivacyLockService.swift */; };
+		AC0000000000000000000201 /* PrivacyLockedStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000201 /* PrivacyLockedStateView.swift */; };
+		AC0000000000000000000202 /* PrivateMomentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000202 /* PrivateMomentsView.swift */; };
+		FF0000000000000000000100 /* MomentPhotoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000100 /* MomentPhotoSectionView.swift */; };
+		FF0000000000000000000101 /* StoryPhotoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000101 /* StoryPhotoLayoutView.swift */; };
+		FF0000000000000000000102 /* TimelinePhotoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000102 /* TimelinePhotoLayoutView.swift */; };
+		FF0000000000000000000103 /* CollagePhotoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000103 /* CollagePhotoLayoutView.swift */; };
+		FF0000000000000000000104 /* FavoritesOnlyLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000104 /* FavoritesOnlyLayoutView.swift */; };
+		FF0000000000000000000105 /* PhotoDumpLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000105 /* PhotoDumpLayoutView.swift */; };
+		FF0000000000000000000106 /* BeforeAfterLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000106 /* BeforeAfterLayoutView.swift */; };
+		FF0000000000000000000107 /* LayoutTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000107 /* LayoutTypePicker.swift */; };
+		FF0000000000000000000164 /* MomentLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000164 /* MomentLayoutType.swift */; };
 		BB002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift */; };
 		BB003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift */; };
 		BB004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift */; };
+		BD39C2CECA76E4B048F2C822 /* PhotoThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD06BDE920949C9D699BEB /* PhotoThumbnailView.swift */; };
+		C2B3D4E5F6071829304A5B6C /* StoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B3D4E5F6071829304A5B6D /* StoryCardView.swift */; };
+		D108AE5E01B0F986453FA04F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC8E25603896E76212AA3D9 /* Photos.framework */; };
+		D3C4E5F607182930415A6B7C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E5F607182930415A6B7D /* String+Extensions.swift */; };
+		E49A0FA75D39D6E676DA49D6 /* GlassIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A190A5933117A5766B26F996 /* GlassIconButton.swift */; };
+		E4B486135B77D8AC056EE303 /* ExportSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7973F2A11A2862A2E8146D0 /* ExportSheetView.swift */; };
+		E4F5061728394A5B6C7D8E9F /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F5061728394A5B6C7D8EA0 /* LocationPickerView.swift */; };
+		F7A8B9C0D1E2F3A4B5C6D7E8 /* ContactPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9B0C1D2E3F4A5B6C7D8E9 /* ContactPickerView.swift */; };
+		FE2F372978AAB96B147BEE73 /* PhotoLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45265D3DCEC4C042C763BC7 /* PhotoLibraryService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0EE43C99E939A92CF9E1FA64 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		203DEE64AF45F3251E76C213 /* Momento.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		203DEE64AF45F3251E76C213 /* Momento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		248E3A6C10908E132E0A4AE9 /* ImageLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingService.swift; sourceTree = "<group>"; };
 		27F436DDF34D4F08FC3131CD /* MomentHeroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeroView.swift; sourceTree = "<group>"; };
 		3877C51EECC4A47081A2FB21 /* MomentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentDetailView.swift; sourceTree = "<group>"; };
@@ -74,26 +88,40 @@
 		A190A5933117A5766B26F996 /* GlassIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassIconButton.swift; sourceTree = "<group>"; };
 		A286D766E33DFDDDCE63E7EF /* AssetThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetThumbnailView.swift; sourceTree = "<group>"; };
 		A94125841A807E0C1EEE16C6 /* PhotoExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoExportService.swift; sourceTree = "<group>"; };
-		C45265D3DCEC4C042C763BC7 /* PhotoLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryService.swift; sourceTree = "<group>"; };
-		C47BA01CD23609EA4BD135C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D762502A4C8A12BEF9B89A27 /* MomentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsApp.swift; sourceTree = "<group>"; };
-		E0770898CB9A732422DFE6AB /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		E16D06578DF62E5498E4358F /* MomentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentListView.swift; sourceTree = "<group>"; };
-		E7973F2A11A2862A2E8146D0 /* ExportSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSheetView.swift; sourceTree = "<group>"; };
-		F2F97CCFD31C7AFBA5B16DA9 /* MomentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentListViewModel.swift; sourceTree = "<group>"; };
-		F31A930E2F56A28F86F943CD /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
-		F821B2265AF2A81ABFC3619D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		B1A2C3D4E5F60718293A4B5D /* MoodChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChipView.swift; sourceTree = "<group>"; };
-		C2B3D4E5F6071829304A5B6D /* StoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCardView.swift; sourceTree = "<group>"; };
-		D3C4E5F607182930415A6B7D /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		E4F5061728394A5B6C7D8EA0 /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
-		F5A6B7C8D9E0F1A2B3C4D5E6 /* MomentCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletion.swift; sourceTree = "<group>"; };
-		F6A7B8C9D0E1F2A3B4C5D6E7 /* MomentCompletionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletionCard.swift; sourceTree = "<group>"; };
-		F8A9B0C1D2E3F4A5B6C7D8E9 /* ContactPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerView.swift; sourceTree = "<group>"; };
+		AA000BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleListView.swift; sourceTree = "<group>"; };
 		AA001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleService.swift; sourceTree = "<group>"; };
+		AA00FACE000000000000A001 /* RandomMemoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMemoryService.swift; sourceTree = "<group>"; };
+		AB0000000000000000000200 /* PrivacyLockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyLockService.swift; sourceTree = "<group>"; };
+		AB0000000000000000000201 /* PrivacyLockedStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyLockedStateView.swift; sourceTree = "<group>"; };
+		AB0000000000000000000202 /* PrivateMomentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMomentsView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000100 /* MomentPhotoSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentPhotoSectionView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000101 /* StoryPhotoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPhotoLayoutView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000102 /* TimelinePhotoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePhotoLayoutView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000103 /* CollagePhotoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollagePhotoLayoutView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000104 /* FavoritesOnlyLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesOnlyLayoutView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000105 /* PhotoDumpLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDumpLayoutView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000106 /* BeforeAfterLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeAfterLayoutView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000107 /* LayoutTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutTypePicker.swift; sourceTree = "<group>"; };
+		EE0000000000000000000164 /* MomentLayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentLayoutType.swift; sourceTree = "<group>"; };
 		AA002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleSheetView.swift; sourceTree = "<group>"; };
 		AA003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleLockedView.swift; sourceTree = "<group>"; };
 		AA004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleReadyView.swift; sourceTree = "<group>"; };
+		B1A2C3D4E5F60718293A4B5D /* MoodChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChipView.swift; sourceTree = "<group>"; };
+		C2B3D4E5F6071829304A5B6D /* StoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCardView.swift; sourceTree = "<group>"; };
+		C45265D3DCEC4C042C763BC7 /* PhotoLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryService.swift; sourceTree = "<group>"; };
+		C47BA01CD23609EA4BD135C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D3C4E5F607182930415A6B7D /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		D762502A4C8A12BEF9B89A27 /* MomentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsApp.swift; sourceTree = "<group>"; };
+		E0770898CB9A732422DFE6AB /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		E16D06578DF62E5498E4358F /* MomentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentListView.swift; sourceTree = "<group>"; };
+		E4F5061728394A5B6C7D8EA0 /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
+		E7973F2A11A2862A2E8146D0 /* ExportSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSheetView.swift; sourceTree = "<group>"; };
+		F2F97CCFD31C7AFBA5B16DA9 /* MomentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentListViewModel.swift; sourceTree = "<group>"; };
+		F31A930E2F56A28F86F943CD /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
+		F5A6B7C8D9E0F1A2B3C4D5E6 /* MomentCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletion.swift; sourceTree = "<group>"; };
+		F6A7B8C9D0E1F2A3B4C5D6E7 /* MomentCompletionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletionCard.swift; sourceTree = "<group>"; };
+		F821B2265AF2A81ABFC3619D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F8A9B0C1D2E3F4A5B6C7D8E9 /* ContactPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +149,7 @@
 		136B828B33058E6B84B9947E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EE0000000000000000000164 /* MomentLayoutType.swift */,
 				429A0E22B792B7D89F4B86D3 /* Moment.swift */,
 				F5A6B7C8D9E0F1A2B3C4D5E6 /* MomentCompletion.swift */,
 				7B887D4FDA400538C85206C4 /* MomentPhoto.swift */,
@@ -148,10 +177,12 @@
 		79306A81E82E4CC1A417BE34 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AB0000000000000000000200 /* PrivacyLockService.swift */,
 				248E3A6C10908E132E0A4AE9 /* ImageLoadingService.swift */,
 				A94125841A807E0C1EEE16C6 /* PhotoExportService.swift */,
 				C45265D3DCEC4C042C763BC7 /* PhotoLibraryService.swift */,
 				AA001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift */,
+				AA00FACE000000000000A001 /* RandomMemoryService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -179,6 +210,15 @@
 		CDAF62D505A9A7EA94DFFF03 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AB0000000000000000000201 /* PrivacyLockedStateView.swift */,
+				EE0000000000000000000100 /* MomentPhotoSectionView.swift */,
+				EE0000000000000000000101 /* StoryPhotoLayoutView.swift */,
+				EE0000000000000000000102 /* TimelinePhotoLayoutView.swift */,
+				EE0000000000000000000103 /* CollagePhotoLayoutView.swift */,
+				EE0000000000000000000104 /* FavoritesOnlyLayoutView.swift */,
+				EE0000000000000000000105 /* PhotoDumpLayoutView.swift */,
+				EE0000000000000000000106 /* BeforeAfterLayoutView.swift */,
+				EE0000000000000000000107 /* LayoutTypePicker.swift */,
 				A286D766E33DFDDDCE63E7EF /* AssetThumbnailView.swift */,
 				F8A9B0C1D2E3F4A5B6C7D8E9 /* ContactPickerView.swift */,
 				A1023FB507B915A1E613DCCB /* EmptyStateView.swift */,
@@ -201,6 +241,7 @@
 		D4D092BDE42CC4DD5336CE0B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AB0000000000000000000202 /* PrivateMomentsView.swift */,
 				E7973F2A11A2862A2E8146D0 /* ExportSheetView.swift */,
 				E4F5061728394A5B6C7D8EA0 /* LocationPickerView.swift */,
 				3877C51EECC4A47081A2FB21 /* MomentDetailView.swift */,
@@ -209,6 +250,7 @@
 				4476BCBB0019D68D3266B3BA /* PhotoDetailView.swift */,
 				0EE43C99E939A92CF9E1FA64 /* RootView.swift */,
 				4F18C89FDF5042B476267194 /* SettingsView.swift */,
+				AA000BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleListView.swift */,
 				AA002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift */,
 			);
 			path = Views;
@@ -267,7 +309,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					EDE475EC06EE1A45FD1DBE93 = {
 						DevelopmentTeam = "";
@@ -310,6 +352,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC0000000000000000000200 /* PrivacyLockService.swift in Sources */,
+				AC0000000000000000000201 /* PrivacyLockedStateView.swift in Sources */,
+				AC0000000000000000000202 /* PrivateMomentsView.swift in Sources */,
+				FF0000000000000000000100 /* MomentPhotoSectionView.swift in Sources */,
+				FF0000000000000000000101 /* StoryPhotoLayoutView.swift in Sources */,
+				FF0000000000000000000102 /* TimelinePhotoLayoutView.swift in Sources */,
+				FF0000000000000000000103 /* CollagePhotoLayoutView.swift in Sources */,
+				FF0000000000000000000104 /* FavoritesOnlyLayoutView.swift in Sources */,
+				FF0000000000000000000105 /* PhotoDumpLayoutView.swift in Sources */,
+				FF0000000000000000000106 /* BeforeAfterLayoutView.swift in Sources */,
+				FF0000000000000000000107 /* LayoutTypePicker.swift in Sources */,
+				FF0000000000000000000164 /* MomentLayoutType.swift in Sources */,
 				4EB00CD649FF101EE1B5EB34 /* AssetThumbnailView.swift in Sources */,
 				90E1A801B469D04A7F979E1B /* Color+Hex.swift in Sources */,
 				2DF224F86D65A2B52F23CA6C /* DateFormatter+App.swift in Sources */,
@@ -344,7 +398,9 @@
 				A5B6C7D8E9F0A1B2C3D4E5F6 /* MomentCompletion.swift in Sources */,
 				A6B7C8D9E0F1A2B3C4D5E6F7 /* MomentCompletionCard.swift in Sources */,
 				F7A8B9C0D1E2F3A4B5C6D7E8 /* ContactPickerView.swift in Sources */,
+				BB000BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleListView.swift in Sources */,
 				BB001BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleService.swift in Sources */,
+				BB00FACE000000000000A001 /* RandomMemoryService.swift in Sources */,
 				BB002BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleSheetView.swift in Sources */,
 				BB003BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleLockedView.swift in Sources */,
 				BB004BC2D3E4F5A6B7C8D9E0 /* TimeCapsuleReadyView.swift in Sources */,
@@ -398,6 +454,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -433,6 +490,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -453,6 +511,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
@@ -463,6 +522,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -498,6 +558,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -511,6 +572,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 6.0;

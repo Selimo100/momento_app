@@ -20,6 +20,8 @@
 	<string>Momento needs access to your photo library so you can add photos to your moments.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Momento needs permission to save photos and create albums in your photo library.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Momento uses Face ID to protect your private moments.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UIApplicationSceneManifest</key>

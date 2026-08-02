@@ -5,8 +5,12 @@ import Photos
 
 struct MomentDetailView: View {
     let moment: Moment
+    /// When set, this photo is opened automatically once the view appears
+    /// (used by "Surprise Me → Random Best Shot").
+    var initialPhoto: MomentPhoto? = nil
 
     @Environment(\.modelContext) private var context
+    @State private var didOpenInitialPhoto = false
     @Environment(\.dismiss) private var dismiss
     @AppStorage("albumPrefix") private var albumPrefix = "Momento –"
     @AppStorage("accentColorHex") private var accentColorHex = "a0c1b9"
@@ -19,163 +23,230 @@ struct MomentDetailView: View {
     @State private var showTimeCapsuleSheet = false
     @State private var showUnlockEarlyConfirmation = false
 
+    @State private var lock = PrivacyLockService.shared
+    @State private var showMakePrivateConfirmation = false
+    @State private var showLeavePrivateConfirmation = false
+    @State private var isAuthenticating = false
+    @State private var privacyErrorMessage: String?
+    @State private var showPrivacyError = false
+
     var body: some View {
+        detailContent
+            .detailNavigationChrome(
+                dismiss: { dismiss() },
+                menu: { detailMenu }
+            )
+            .detailSheets(
+                showEditSheet: $showEditSheet,
+                showTimeCapsuleSheet: $showTimeCapsuleSheet,
+                showingExportSheet: $viewModel.showingExportSheet,
+                editSheet: { MomentFormView(mode: .edit(moment)) },
+                timeCapsuleSheet: { timeCapsuleSheet },
+                exportSheet: { exportSheet }
+            )
+            .detailPhotoPicker(
+                showingPhotoPicker: $viewModel.showingPhotoPicker,
+                photoPickerItems: $viewModel.photoPickerItems,
+                onItemsChanged: loadPhotoPickerItems
+            )
+            .detailPhotoCover(
+                showingPhotoDetail: $viewModel.showingPhotoDetail,
+                selectedPhoto: viewModel.selectedPhoto,
+                content: { photoDetailView(for: $0) }
+            )
+            .detailAlerts(
+                showExportResult: $viewModel.showExportResult,
+                exportResultMessage: viewModel.exportResultMessage,
+                showPermissionAlert: $showPermissionAlert,
+                permissionMessage: permissionMessage
+            )
+            .detailConfirmationDialogs(
+                showDeleteConfirmation: $showDeleteConfirmation,
+                showUnlockEarlyConfirmation: $showUnlockEarlyConfirmation,
+                deleteMoment: deleteMoment,
+                unlockMoment: unlockMoment
+            )
+            .onAppear(perform: openInitialPhotoIfNeeded)
+            .privacyDialogs(
+                showMakePrivate: $showMakePrivateConfirmation,
+                showLeavePrivate: $showLeavePrivateConfirmation,
+                showError: $showPrivacyError,
+                errorMessage: privacyErrorMessage,
+                biometryLabel: lock.biometryLabel,
+                makePrivate: { Task { await moveToPrivate() } },
+                leavePrivate: moveOutOfPrivate
+            )
+    }
+
+    private func openInitialPhotoIfNeeded() {
+        guard let initialPhoto, !didOpenInitialPhoto, !moment.isLocked, !isConcealed else { return }
+        didOpenInitialPhoto = true
+        viewModel.selectedPhoto = initialPhoto
+        viewModel.showingPhotoDetail = true
+    }
+
+    /// A private moment may only be rendered inside an authenticated session.
+    /// This also covers the case where the app was backgrounded while a private
+    /// moment was open.
+    private var isConcealed: Bool {
+        moment.isPrivate && !lock.isUnlocked
+    }
+
+    @ViewBuilder
+    private var detailContent: some View {
+        if isConcealed {
+            concealedContent
+        } else {
+            unlockedDetailContent
+        }
+    }
+
+    private var concealedContent: some View {
+        ScrollView {
+            PrivacyLockedStateView(
+                title: "This moment is private",
+                message: "Authenticate to view this memory. It stays hidden from your main library either way.",
+                actionTitle: "Unlock",
+                isAuthenticating: isAuthenticating,
+                errorMessage: lock.lastErrorMessage
+            ) {
+                Task {
+                    isAuthenticating = true
+                    await lock.unlock()
+                    isAuthenticating = false
+                }
+            }
+            .padding(20)
+        }
+        .background(Color(.systemGroupedBackground))
+    }
+
+    private var unlockedDetailContent: some View {
         ScrollView {
             VStack(spacing: 0) {
                 MomentHeroView(moment: moment)
-                    .ignoresSafeArea(edges: .top)
 
                 capsuleContentView
-                    .padding(.top, 32)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, 24)
                     .padding(.bottom, 100)
                     .background(Color(.systemGroupedBackground))
-                    .clipShape(
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: 24,
-                            bottomLeadingRadius: 0,
-                            bottomTrailingRadius: 0,
-                            topTrailingRadius: 24,
-                            style: .continuous
-                        )
-                    )
-                    .padding(.top, -24)
             }
         }
-        .ignoresSafeArea(edges: .top)
+        .scrollIndicators(.hidden)
         .background(Color(.systemGroupedBackground))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
-        .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                GlassIconButton(icon: "chevron.left") { dismiss() }
+        .ignoresSafeArea(edges: .top)
+    }
+
+    private var detailMenu: some View {
+        Menu {
+            Button { showEditSheet = true } label: {
+                Label("Edit Moment", systemImage: "pencil")
             }
-            ToolbarItem(placement: .topBarTrailing) {
-                Menu {
-                    Button { showEditSheet = true } label: {
-                        Label("Edit Moment", systemImage: "pencil")
-                    }
-                    if !moment.isTimeCapsule {
-                        Button { showTimeCapsuleSheet = true } label: {
-                            Label("Open Later", systemImage: "lock")
-                        }
-                    } else {
-                        Button { showUnlockEarlyConfirmation = true } label: {
-                            Label("Unlock Early", systemImage: "lock.open")
-                        }
-                    }
-                    if !moment.isLocked {
-                        Button { prepareExport() } label: {
-                            Label("Export to Photos", systemImage: "square.and.arrow.up")
-                        }
-                    }
-                    Divider()
-                    Button(role: .destructive) {
-                        showDeleteConfirmation = true
-                    } label: {
-                        Label("Delete Moment", systemImage: "trash")
-                    }
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(.white)
-                        .frame(width: 36, height: 36)
-                        .glassEffect(.regular, in: Circle())
+            if !moment.isTimeCapsule && moment.reminderDate == nil {
+                Button { showTimeCapsuleSheet = true } label: {
+                    Label("Open Later", systemImage: "clock")
                 }
             }
+            if moment.isTimeCapsule {
+                Button { showUnlockEarlyConfirmation = true } label: {
+                    Label("Unlock Early", systemImage: "lock.open")
+                }
+            }
+            if moment.reminderDate != nil {
+                Button { clearReminder() } label: {
+                    Label("Cancel Reminder", systemImage: "bell.slash")
+                }
+            }
+            if !moment.isLocked {
+                Button { prepareExport() } label: {
+                    Label("Export to Photos", systemImage: "square.and.arrow.up")
+                }
+            }
+            Divider()
+            if moment.isPrivate {
+                Button { showLeavePrivateConfirmation = true } label: {
+                    Label("Move out of Private", systemImage: "lock.open")
+                }
+            } else {
+                Button { showMakePrivateConfirmation = true } label: {
+                    Label("Move to Private", systemImage: "lock")
+                }
+            }
+            Divider()
+            Button(role: .destructive) {
+                showDeleteConfirmation = true
+            } label: {
+                Label("Delete Moment", systemImage: "trash")
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundStyle(.white)
+                .frame(width: 36, height: 36)
+                .glassEffect(.regular, in: Circle())
         }
-        // MARK: Sheets & Pickers
-        .sheet(isPresented: $showEditSheet) {
-            MomentFormView(mode: .edit(moment))
-        }
-        .sheet(isPresented: $showTimeCapsuleSheet) {
-            TimeCapsuleSheetView(moment: moment) { date in
+    }
+
+    private var timeCapsuleSheet: some View {
+        TimeCapsuleSheetView(moment: moment) { action in
+            switch action {
+            case .seal(let date):
                 sealMoment(unlockDate: date)
-                showTimeCapsuleSheet = false
+            case .remind(let date):
+                setReminder(date: date)
             }
+            showTimeCapsuleSheet = false
         }
-        .photosPicker(
-            isPresented: $viewModel.showingPhotoPicker,
-            selection: $viewModel.photoPickerItems,
-            maxSelectionCount: 100,
-            matching: .images,
-            photoLibrary: .shared()
+    }
+
+    private var exportSheet: some View {
+        ExportSheetView(
+            moment: moment,
+            albumName: $viewModel.exportAlbumName,
+            isExporting: viewModel.isExporting,
+            onExport: exportPhotos,
+            onCancel: { viewModel.showingExportSheet = false }
         )
-        .onChange(of: viewModel.photoPickerItems) { _, items in
-            guard !items.isEmpty else { return }
-            Task {
-                await viewModel.loadPickerItems(items, into: moment, context: context)
-                viewModel.photoPickerItems = []
-            }
+        .presentationDetents([.medium, .large])
+    }
+
+    private func photoDetailView(for photo: MomentPhoto) -> some View {
+        PhotoDetailView(
+            moment: moment,
+            initialPhoto: photo,
+            onFavoriteToggle: { selectedPhoto in
+                viewModel.toggleFavorite(selectedPhoto, in: moment, context: context)
+            },
+            onSetCover: { selectedPhoto in
+                viewModel.setCover(selectedPhoto, in: moment, context: context)
+            },
+            onRemove: { selectedPhoto in
+                viewModel.removePhoto(selectedPhoto, from: moment, context: context)
+            },
+            onSetBefore: setBeforePhoto,
+            onSetAfter: setAfterPhoto
+        )
+    }
+
+    private func loadPhotoPickerItems(_ items: [PhotosPickerItem]) {
+        guard !items.isEmpty else { return }
+        Task {
+            await viewModel.loadPickerItems(items, into: moment, context: context)
+            viewModel.photoPickerItems = []
         }
-        .sheet(isPresented: $viewModel.showingExportSheet) {
-            ExportSheetView(
-                moment: moment,
-                albumName: $viewModel.exportAlbumName,
-                isExporting: viewModel.isExporting,
-                onExport: { scope in
-                    Task { await viewModel.export(moment: moment, scope: scope, context: context) }
-                },
-                onCancel: { viewModel.showingExportSheet = false }
-            )
-            .presentationDetents([.medium, .large])
+    }
+
+    private func exportPhotos(scope: ExportScope) {
+        Task {
+            await viewModel.export(moment: moment, scope: scope, context: context)
         }
-        .fullScreenCover(isPresented: $viewModel.showingPhotoDetail) {
-            if let photo = viewModel.selectedPhoto {
-                PhotoDetailView(
-                    moment: moment,
-                    initialPhoto: photo,
-                    onFavoriteToggle: { p in
-                        viewModel.toggleFavorite(p, in: moment, context: context)
-                    },
-                    onSetCover: { p in
-                        viewModel.setCover(p, in: moment, context: context)
-                    },
-                    onRemove: { p in
-                        viewModel.removePhoto(p, from: moment, context: context)
-                    }
-                )
-            }
-        }
-        // MARK: Alerts
-        .alert("Export Result", isPresented: $viewModel.showExportResult) {
-            Button("OK") {}
-        } message: {
-            Text(viewModel.exportResultMessage ?? "")
-        }
-        .alert("Photo Access", isPresented: $showPermissionAlert) {
-            Button("Open Settings") { PermissionHelpers.openAppSettings() }
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text(permissionMessage)
-        }
-        .confirmationDialog(
-            "Delete Moment",
-            isPresented: $showDeleteConfirmation,
-            titleVisibility: .visible
-        ) {
-            Button("Delete", role: .destructive) {
-                context.delete(moment)
-                try? context.save()
-                dismiss()
-            }
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text("This removes the moment and its photo references. Your original photos in Apple Photos are not affected.")
-        }
-        .confirmationDialog(
-            "Unlock this time capsule early?",
-            isPresented: $showUnlockEarlyConfirmation,
-            titleVisibility: .visible
-        ) {
-            Button("Unlock Early", role: .destructive) {
-                unlockMoment()
-            }
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text("This will reveal the memory before its scheduled date and remove the seal.")
-        }
+    }
+
+    private func deleteMoment() {
+        context.delete(moment)
+        try? context.save()
+        dismiss()
     }
 
     // MARK: Conditional content
@@ -199,14 +270,54 @@ struct MomentDetailView: View {
 
     private var contentStack: some View {
         VStack(alignment: .leading, spacing: 16) {
+            if let reminderDate = moment.reminderDate {
+                reminderBanner(date: reminderDate)
+            }
             if !moment.momentDescription.isEmpty {
                 descriptionCard
             }
             StoryCardView(moment: moment)
             MomentCompletionCard(moment: moment)
-            photosSection
+            MomentPhotoSectionView(moment: moment, actions: photoLayoutActions)
         }
         .padding(.horizontal, 16)
+    }
+
+    // MARK: Reminder banner
+
+    private func reminderBanner(date: Date) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: "bell.fill")
+                .font(.system(size: 15))
+                .foregroundStyle(Color(hex: accentColorHex))
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Reminder set")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.secondary)
+                    .textCase(.uppercase)
+                    .tracking(0.5)
+                Text(DateFormatter.momentDate.string(from: date))
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(.primary)
+            }
+
+            Spacer()
+
+            Button {
+                clearReminder()
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.caption.weight(.bold))
+                    .foregroundStyle(.secondary)
+                    .padding(8)
+                    .background(Color(.tertiarySystemGroupedBackground), in: Circle())
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(14)
+        .background(Color(hex: accentColorHex).opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
     }
 
     // MARK: Description
@@ -232,89 +343,35 @@ struct MomentDetailView: View {
 
     // MARK: Photos
 
-    private var photosSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            photosSectionHeader
-
-            if moment.photos.isEmpty {
-                emptyPhotosCard
-            } else {
-                SectionCard(insets: 10) {
-                    PhotoGridView(
-                        photos: moment.photos,
-                        coverPhotoId: moment.coverPhotoId
-                    ) { photo in
-                        viewModel.selectedPhoto = photo
-                        viewModel.showingPhotoDetail = true
-                    }
-                }
-            }
-        }
+    private var photoLayoutActions: MomentPhotoLayoutActions {
+        MomentPhotoLayoutActions(
+            openPhoto: { photo in
+                viewModel.selectedPhoto = photo
+                viewModel.showingPhotoDetail = true
+            },
+            addPhotos: checkPermissionsAndAddPhotos,
+            setBefore: setBeforePhoto,
+            setAfter: setAfterPhoto,
+            changeLayout: changeLayout
+        )
     }
 
-    private var photosSectionHeader: some View {
-        HStack(spacing: 4) {
-            Text("Photos")
-                .font(.system(size: 17, weight: .semibold))
-
-            Text("·")
-                .foregroundStyle(.tertiary)
-                .font(.system(size: 17))
-
-            Text("\(moment.photos.count)")
-                .font(.system(size: 17, weight: .semibold))
-                .foregroundStyle(.secondary)
-
-            Spacer()
-
-            if moment.favoriteCount > 0 {
-                HStack(spacing: 4) {
-                    Image(systemName: "heart.fill")
-                        .font(.caption)
-                        .foregroundStyle(.pink)
-                    Text("\(moment.favoriteCount)")
-                        .font(.subheadline.weight(.medium))
-                        .foregroundStyle(.secondary)
-                }
-                .padding(.trailing, 6)
-            }
-
-            Button {
-                checkPermissionsAndAddPhotos()
-            } label: {
-                Image(systemName: "plus")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundStyle(Color(hex: accentColorHex))
-                    .frame(width: 32, height: 32)
-                    .background(Color(.tertiarySystemGroupedBackground), in: Circle())
-            }
-        }
+    private func changeLayout(_ layout: MomentLayoutType) {
+        moment.layout = layout
+        moment.updatedAt = .now
+        try? context.save()
     }
 
-    private var emptyPhotosCard: some View {
-        SectionCard {
-            VStack(spacing: 16) {
-                Image(systemName: "photo.badge.plus")
-                    .font(.system(size: 44, weight: .light))
-                    .foregroundStyle(.tertiary)
+    private func setBeforePhoto(_ photo: MomentPhoto) {
+        moment.beforePhotoId = photo.id
+        moment.updatedAt = .now
+        try? context.save()
+    }
 
-                VStack(spacing: 6) {
-                    Text("No photos yet")
-                        .font(.system(size: 16, weight: .semibold))
-
-                    Text("Add your favorite pictures to bring this moment to life.")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 16)
-                }
-
-                PrimaryButton("Add Photos", icon: "plus") {
-                    checkPermissionsAndAddPhotos()
-                }
-            }
-            .padding(.vertical, 20)
-        }
+    private func setAfterPhoto(_ photo: MomentPhoto) {
+        moment.afterPhotoId = photo.id
+        moment.updatedAt = .now
+        try? context.save()
     }
 
     // MARK: Actions
@@ -351,6 +408,9 @@ struct MomentDetailView: View {
     }
 
     private func sealMoment(unlockDate: Date) {
+        // Clear any existing reminder when sealing
+        TimeCapsuleService.cancelReminderNotification(for: moment)
+        moment.reminderDate = nil
         moment.isTimeCapsule = true
         moment.unlockDate = unlockDate
         moment.lockedAt = .now
@@ -365,11 +425,207 @@ struct MomentDetailView: View {
     }
 
     private func unlockMoment() {
-        TimeCapsuleService.cancelNotification(for: moment)
+        TimeCapsuleService.cancelUnlockNotification(for: moment)
         moment.isTimeCapsule = false
         moment.unlockDate = nil
         moment.lockedAt = nil
         moment.updatedAt = .now
         try? context.save()
+    }
+
+    private func setReminder(date: Date) {
+        moment.reminderDate = date
+        moment.updatedAt = .now
+        try? context.save()
+        Task {
+            let granted = await TimeCapsuleService.requestNotificationPermission()
+            if granted {
+                TimeCapsuleService.scheduleReminderNotification(for: moment)
+            }
+        }
+    }
+
+    // MARK: Privacy
+
+    /// Requires a successful authentication before anything is written.
+    private func moveToPrivate() async {
+        let result = await lock.authenticate(reason: "Unlock your private moments")
+        switch result {
+        case .success:
+            moment.isPrivate = true
+            moment.updatedAt = .now
+            try? context.save()
+            // Opening the private area from here should not require a second prompt.
+            lock.markUnlockedForCurrentSession()
+        case .failure(let error):
+            privacyErrorMessage = error.message
+            showPrivacyError = true
+        }
+    }
+
+    private func moveOutOfPrivate() {
+        moment.isPrivate = false
+        moment.updatedAt = .now
+        try? context.save()
+    }
+
+    private func clearReminder() {
+        TimeCapsuleService.cancelReminderNotification(for: moment)
+        moment.reminderDate = nil
+        moment.updatedAt = .now
+        try? context.save()
+    }
+}
+
+private extension View {
+    func detailNavigationChrome<MenuContent: View>(
+        dismiss: @escaping () -> Void,
+        @ViewBuilder menu: @escaping () -> MenuContent
+    ) -> some View {
+        navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    GlassIconButton(icon: "chevron.left", action: dismiss)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    menu()
+                }
+            }
+    }
+
+    func detailSheets<EditSheet: View, TimeCapsuleSheet: View, ExportSheet: View>(
+        showEditSheet: Binding<Bool>,
+        showTimeCapsuleSheet: Binding<Bool>,
+        showingExportSheet: Binding<Bool>,
+        @ViewBuilder editSheet: @escaping () -> EditSheet,
+        @ViewBuilder timeCapsuleSheet: @escaping () -> TimeCapsuleSheet,
+        @ViewBuilder exportSheet: @escaping () -> ExportSheet
+    ) -> some View {
+        sheet(isPresented: showEditSheet) {
+            editSheet()
+        }
+        .sheet(isPresented: showTimeCapsuleSheet) {
+            timeCapsuleSheet()
+        }
+        .sheet(isPresented: showingExportSheet) {
+            exportSheet()
+        }
+    }
+
+    func detailPhotoPicker(
+        showingPhotoPicker: Binding<Bool>,
+        photoPickerItems: Binding<[PhotosPickerItem]>,
+        onItemsChanged: @escaping ([PhotosPickerItem]) -> Void
+    ) -> some View {
+        photosPicker(
+            isPresented: showingPhotoPicker,
+            selection: photoPickerItems,
+            maxSelectionCount: 100,
+            matching: .images,
+            photoLibrary: .shared()
+        )
+        .onChange(of: photoPickerItems.wrappedValue) { _, items in
+            onItemsChanged(items)
+        }
+    }
+
+    func detailPhotoCover<Content: View>(
+        showingPhotoDetail: Binding<Bool>,
+        selectedPhoto: MomentPhoto?,
+        @ViewBuilder content: @escaping (MomentPhoto) -> Content
+    ) -> some View {
+        fullScreenCover(isPresented: showingPhotoDetail) {
+            if let selectedPhoto {
+                content(selectedPhoto)
+            }
+        }
+    }
+
+    func detailAlerts(
+        showExportResult: Binding<Bool>,
+        exportResultMessage: String?,
+        showPermissionAlert: Binding<Bool>,
+        permissionMessage: String
+    ) -> some View {
+        alert("Export Result", isPresented: showExportResult) {
+            Button("OK") {}
+        } message: {
+            Text(exportResultMessage ?? "")
+        }
+        .alert("Photo Access", isPresented: showPermissionAlert) {
+            Button("Open Settings") { PermissionHelpers.openAppSettings() }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text(permissionMessage)
+        }
+    }
+
+    func detailConfirmationDialogs(
+        showDeleteConfirmation: Binding<Bool>,
+        showUnlockEarlyConfirmation: Binding<Bool>,
+        deleteMoment: @escaping () -> Void,
+        unlockMoment: @escaping () -> Void
+    ) -> some View {
+        confirmationDialog(
+            "Delete Moment",
+            isPresented: showDeleteConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Delete", role: .destructive, action: deleteMoment)
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This removes the moment and its photo references. Your original photos in Apple Photos are not affected.")
+        }
+        .confirmationDialog(
+            "Unlock this time capsule early?",
+            isPresented: showUnlockEarlyConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Unlock Early", role: .destructive, action: unlockMoment)
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This will reveal the memory before its scheduled date and remove the seal.")
+        }
+    }
+}
+
+private extension View {
+    func privacyDialogs(
+        showMakePrivate: Binding<Bool>,
+        showLeavePrivate: Binding<Bool>,
+        showError: Binding<Bool>,
+        errorMessage: String?,
+        biometryLabel: String,
+        makePrivate: @escaping () -> Void,
+        leavePrivate: @escaping () -> Void
+    ) -> some View {
+        confirmationDialog(
+            "Move to Private",
+            isPresented: showMakePrivate,
+            titleVisibility: .visible
+        ) {
+            Button("Move to Private", action: makePrivate)
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This moment will be hidden from your library and only reachable through Private Moments, protected with \(biometryLabel).")
+        }
+        .confirmationDialog(
+            "Move out of Private",
+            isPresented: showLeavePrivate,
+            titleVisibility: .visible
+        ) {
+            Button("Move out of Private", action: leavePrivate)
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This moment will appear in your normal library again.")
+        }
+        .alert("Not Unlocked", isPresented: showError) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(errorMessage ?? "")
+        }
     }
 }

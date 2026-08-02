@@ -23,9 +23,20 @@ final class Moment {
     var hasBeenExported: Bool = false
     var lastExportedAt: Date?
 
+    /// Raw value of ``MomentLayoutType``. Defaulted so existing moments
+    /// migrate lightweight and simply render the Story layout.
+    var layoutType: String = MomentLayoutType.fallback.rawValue
+    var beforePhotoId: UUID? = nil
+    var afterPhotoId: UUID? = nil
+
+    /// Private moments are hidden from the normal list and only reachable
+    /// through the authenticated Private Moments area.
+    var isPrivate: Bool = false
+
     var isTimeCapsule: Bool = false
     var unlockDate: Date? = nil
     var lockedAt: Date? = nil
+    var reminderDate: Date? = nil
 
     @Relationship(deleteRule: .cascade, inverse: \MomentPhoto.moment)
     var photos: [MomentPhoto]
@@ -60,6 +71,30 @@ final class Moment {
 
     var favoriteCount: Int {
         photos.filter(\.isFavorite).count
+    }
+
+    /// Type-safe access to ``layoutType``, always falling back to Story.
+    var layout: MomentLayoutType {
+        get { MomentLayoutType.resolve(layoutType) }
+        set { layoutType = newValue.rawValue }
+    }
+
+    var sortedPhotos: [MomentPhoto] {
+        photos.sorted { $0.addedAt < $1.addedAt }
+    }
+
+    var favoritePhotos: [MomentPhoto] {
+        sortedPhotos.filter(\.isFavorite)
+    }
+
+    var beforePhoto: MomentPhoto? {
+        guard let beforePhotoId else { return nil }
+        return photos.first { $0.id == beforePhotoId }
+    }
+
+    var afterPhoto: MomentPhoto? {
+        guard let afterPhotoId else { return nil }
+        return photos.first { $0.id == afterPhotoId }
     }
 
     var coverPhoto: MomentPhoto? {

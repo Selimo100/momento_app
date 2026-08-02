@@ -14,7 +14,7 @@ struct SettingsView: View {
     @State private var pickerSynced = false
 
     private var capsuleMoments: [Moment] {
-        allMoments.filter { $0.isTimeCapsule }.sorted { ($0.unlockDate ?? .now) < ($1.unlockDate ?? .now) }
+        allMoments.filter { $0.isTimeCapsule && !$0.isPrivate }.sorted { ($0.unlockDate ?? .now) < ($1.unlockDate ?? .now) }
     }
 
     private var appVersion: String {
@@ -110,6 +110,32 @@ struct SettingsView: View {
                     Text("Developer")
                 } footer: {
                     Text("Force a locked time capsule to become ready to reopen without waiting for the unlock date.")
+                }
+
+                Section {
+                    NavigationLink {
+                        PrivateMomentsView()
+                    } label: {
+                        HStack(spacing: 12) {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 15))
+                                .foregroundStyle(Color(hex: accentColorHex))
+                                .frame(width: 22)
+
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Private Moments")
+                                    .font(.subheadline.weight(.medium))
+                                Text("Hidden from your main library")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 2)
+                    }
+                } header: {
+                    Text("Private")
+                } footer: {
+                    Text("Private moments are protected with \(PrivacyLockService.shared.biometryLabel) and never leave this device.")
                 }
 
                 Section {

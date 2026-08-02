@@ -75,6 +75,8 @@ final class MomentDetailViewModel {
             let remaining = moment.photos.filter { $0.id != photo.id }
             moment.coverPhotoId = remaining.first?.id
         }
+        if moment.beforePhotoId == photo.id { moment.beforePhotoId = nil }
+        if moment.afterPhotoId == photo.id { moment.afterPhotoId = nil }
         moment.photos.removeAll { $0.id == photo.id }
         context.delete(photo)
         moment.updatedAt = .now

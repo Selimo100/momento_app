@@ -22,6 +22,7 @@ struct MomentFormView: View {
     @State private var startDate = Date()
     @State private var endDate = Calendar.current.date(byAdding: .day, value: 1, to: .now) ?? .now
 
+    @State private var layoutType: MomentLayoutType = .story
     @State private var mood = ""
     @State private var story = ""
     @State private var people = ""
@@ -79,6 +80,16 @@ struct MomentFormView: View {
                         Text("A date range lets you capture a period, like a trip or an event.")
                             .font(.caption)
                     }
+                }
+
+                Section {
+                    LayoutTypePicker(selection: $layoutType)
+                        .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                } header: {
+                    Text("Layout")
+                } footer: {
+                    Text("Choose how the photos of this moment are presented.")
+                        .font(.caption)
                 }
 
                 Section {
@@ -203,6 +214,7 @@ struct MomentFormView: View {
                     endDate = end
                 }
             }
+            layoutType = moment.layout
             mood = moment.mood ?? ""
             story = moment.story ?? ""
             people = moment.people ?? ""
@@ -231,6 +243,7 @@ struct MomentFormView: View {
                 endDate: resolvedEnd,
                 momentDescription: momentDescription
             )
+            moment.layout = layoutType
             moment.mood = mood.trimmedOrNil
             moment.story = story.trimmedOrNil
             moment.people = people.trimmedOrNil
@@ -248,6 +261,7 @@ struct MomentFormView: View {
             moment.momentDescription = momentDescription
             moment.startDate = resolvedStart
             moment.endDate = resolvedEnd
+            moment.layout = layoutType
             moment.mood = mood.trimmedOrNil
             moment.story = story.trimmedOrNil
             moment.people = people.trimmedOrNil

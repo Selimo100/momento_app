@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(xcodebuild -project Momento.xcodeproj -scheme Momento -destination 'generic/platform=iOS Simulator' build)",
+      "Read(//Applications/**)",
+      "Bash(xcode-select -p)",
+      "Bash(DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer xcodebuild -project Momento.xcodeproj -scheme Momento -destination 'generic/platform=iOS Simulator' build)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(ls /Applications | grep -i xcode)",
+      "Bash(DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer xcodebuild -scheme Momento -destination 'platform=iOS Simulator,name=iPhone 17 Pro' build)"
+    ]
+  }
+}

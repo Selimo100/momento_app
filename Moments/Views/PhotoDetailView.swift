@@ -6,6 +6,9 @@ struct PhotoDetailView: View {
     let onFavoriteToggle: (MomentPhoto) -> Void
     let onSetCover: (MomentPhoto) -> Void
     let onRemove: (MomentPhoto) -> Void
+    /// Only surfaced for moments using the Before / After layout.
+    var onSetBefore: ((MomentPhoto) -> Void)?
+    var onSetAfter: ((MomentPhoto) -> Void)?
 
     @Environment(\.dismiss) private var dismiss
     @State private var currentIndex: Int
@@ -16,13 +19,17 @@ struct PhotoDetailView: View {
         initialPhoto: MomentPhoto,
         onFavoriteToggle: @escaping (MomentPhoto) -> Void,
         onSetCover: @escaping (MomentPhoto) -> Void,
-        onRemove: @escaping (MomentPhoto) -> Void
+        onRemove: @escaping (MomentPhoto) -> Void,
+        onSetBefore: ((MomentPhoto) -> Void)? = nil,
+        onSetAfter: ((MomentPhoto) -> Void)? = nil
     ) {
         self.moment = moment
         self.initialPhoto = initialPhoto
         self.onFavoriteToggle = onFavoriteToggle
         self.onSetCover = onSetCover
         self.onRemove = onRemove
+        self.onSetBefore = onSetBefore
+        self.onSetAfter = onSetAfter
         let sorted = moment.photos.sorted { $0.addedAt < $1.addedAt }
         let idx = sorted.firstIndex(where: { $0.id == initialPhoto.id }) ?? 0
         self._currentIndex = State(initialValue: idx)
@@ -113,6 +120,35 @@ struct PhotoDetailView: View {
                 onSetCover(photo)
             }
 
+            if moment.layout == .beforeAfter, onSetBefore != nil || onSetAfter != nil {
+                Menu {
+                    if let onSetBefore {
+                        Button {
+                            onSetBefore(photo)
+                        } label: {
+                            Label("Set as Before", systemImage: "arrow.left.square")
+                        }
+                    }
+                    if let onSetAfter {
+                        Button {
+                            onSetAfter(photo)
+                        } label: {
+                            Label("Set as After", systemImage: "arrow.right.square")
+                        }
+                    }
+                } label: {
+                    VStack(spacing: 5) {
+                        Image(systemName: "rectangle.split.2x1")
+                            .font(.system(size: 22))
+                            .foregroundStyle(comparisonTint(for: photo))
+                        Text("Compare")
+                            .font(.caption2)
+                            .foregroundStyle(.white.opacity(0.75))
+                    }
+                    .frame(width: 80)
+                }
+            }
+
             actionButton(icon: "trash", label: "Remove", tint: .red) {
                 showRemoveConfirmation = true
             }
@@ -120,6 +156,10 @@ struct PhotoDetailView: View {
         .padding(.horizontal, 8)
         .padding(.vertical, 10)
         .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+    }
+
+    private func comparisonTint(for photo: MomentPhoto) -> Color {
+        (moment.beforePhotoId == photo.id || moment.afterPhotoId == photo.id) ? .yellow : .white
     }
 
     @ViewBuilder

@@ -11,18 +11,41 @@ struct MomentListView: View {
     @State private var showDeleteConfirmation = false
     @State private var navigateToNewMoment: Moment?
 
+    @State private var surpriseDestination: SurpriseDestination?
+    @State private var surpriseMessage: String?
+    @State private var showSurpriseMessage = false
+
     @AppStorage("accentColorHex") private var accentColorHex = "a0c1b9"
 
     // MARK: Computed
 
+    /// Private moments never appear in the normal library.
+    private var visibleMoments: [Moment] {
+        moments.filter { !$0.isPrivate }
+    }
+
     private var readyMoments: [Moment] {
-        moments.filter { $0.isReadyToReopen }
+        visibleMoments.filter { $0.isReadyToReopen }
+    }
+
+    private struct SurpriseDestination: Identifiable, Hashable {
+        let id = UUID()
+        let moment: Moment
+        let photo: MomentPhoto?
+
+        static func == (lhs: SurpriseDestination, rhs: SurpriseDestination) -> Bool {
+            lhs.id == rhs.id
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
     }
 
     var body: some View {
         NavigationStack {
             Group {
-                if moments.isEmpty {
+                if visibleMoments.isEmpty {
                     emptyState
                 } else {
                     momentGrid
@@ -60,6 +83,62 @@ struct MomentListView: View {
             .navigationDestination(item: $navigateToNewMoment) { moment in
                 MomentDetailView(moment: moment)
             }
+            .navigationDestination(item: $surpriseDestination) { destination in
+                MomentDetailView(moment: destination.moment, initialPhoto: destination.photo)
+            }
+            .alert("Surprise Me", isPresented: $showSurpriseMessage) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(surpriseMessage ?? "")
+            }
+        }
+    }
+
+    // MARK: Surprise Me
+
+    private var surpriseMeButton: some View {
+        Menu {
+            ForEach(SurpriseMode.allCases) { mode in
+                Button {
+                    runSurprise(mode)
+                } label: {
+                    Label(mode.title, systemImage: mode.icon)
+                }
+            }
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: "sparkles")
+                    .font(.system(size: 16, weight: .semibold))
+                Text("Surprise Me")
+                    .font(.system(size: 16, weight: .semibold))
+            }
+            .foregroundStyle(.white)
+            .padding(.vertical, 14)
+            .frame(maxWidth: .infinity)
+            .background(
+                LinearGradient(
+                    colors: [
+                        Color(hex: accentColorHex),
+                        Color(hex: accentColorHex).opacity(0.75)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ),
+                in: Capsule()
+            )
+            .shadow(color: Color(hex: accentColorHex).opacity(0.35), radius: 10, y: 4)
+        }
+        .menuStyle(.button)
+        .buttonStyle(.plain)
+    }
+
+    private func runSurprise(_ mode: SurpriseMode) {
+        switch RandomMemoryService.pick(mode: mode, from: visibleMoments) {
+        case .success(let result):
+            surpriseDestination = SurpriseDestination(moment: result.moment, photo: result.photo)
+        case .failure(let error):
+            surpriseMessage = error.message
+            showSurpriseMessage = true
         }
     }
 
@@ -85,12 +164,15 @@ struct MomentListView: View {
     private var momentGrid: some View {
         ScrollView {
             LazyVStack(spacing: 16) {
+                surpriseMeButton
+                    .padding(.top, 4)
+
                 if !readyMoments.isEmpty {
                     readyToReopenBanner
                         .padding(.top, 4)
                 }
 
-                ForEach(moments) { moment in
+                ForEach(visibleMoments) { moment in
                     NavigationLink(destination: MomentDetailView(moment: moment)) {
                         MomentCardView(moment: moment)
                     }
