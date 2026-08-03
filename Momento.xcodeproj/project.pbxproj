@@ -69,7 +69,7 @@
 		08D1E06CFFD69DD5B69CC57E /* StoryPhotoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPhotoLayoutView.swift; sourceTree = "<group>"; };
 		0EE43C99E939A92CF9E1FA64 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		128E1B09C2F922385FB66295 /* MomentCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCompletion.swift; sourceTree = "<group>"; };
-		203DEE64AF45F3251E76C213 /* Momento.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		203DEE64AF45F3251E76C213 /* Momento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209CFE770BE5D8579A95F08C /* TimeCapsuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleService.swift; sourceTree = "<group>"; };
 		22D2D3A71224378888967803 /* LayoutTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutTypePicker.swift; sourceTree = "<group>"; };
 		248E3A6C10908E132E0A4AE9 /* ImageLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingService.swift; sourceTree = "<group>"; };
@@ -312,7 +312,6 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					EDE475EC06EE1A45FD1DBE93 = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -416,6 +415,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4JP5T76ZNW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Moments/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -438,6 +438,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4JP5T76ZNW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Moments/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
