@@ -155,8 +155,11 @@ struct MomentListView: View {
             ) {
                 viewModel.showingCreateSheet = true
             }
+            .adaptiveContentWidth(maxWidth: 480)
             Spacer()
         }
+        .frame(maxWidth: .infinity)
+        .background(Color(.systemGroupedBackground))
     }
 
     // MARK: Moment grid
@@ -192,7 +195,7 @@ struct MomentListView: View {
                     }
                 }
             }
-            .padding(.horizontal, 16)
+            .adaptiveContentWidth()
             .padding(.vertical, 12)
         }
         .background(Color(.systemGroupedBackground))

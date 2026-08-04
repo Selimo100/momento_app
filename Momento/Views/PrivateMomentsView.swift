@@ -64,6 +64,7 @@ struct PrivateMomentsView: View {
                 Task { await authenticate() }
             }
             .padding(20)
+            .adaptiveContentWidth(maxWidth: 480, includeHorizontalPadding: false)
         }
     }
 
@@ -88,7 +89,7 @@ struct PrivateMomentsView: View {
                             .padding(.top, 40)
                     }
                 }
-                .padding(.horizontal, 16)
+                .adaptiveContentWidth()
                 .padding(.vertical, 16)
             }
             .searchable(text: $searchText, prompt: "Search private moments")
@@ -124,7 +125,7 @@ struct PrivateMomentsView: View {
 
             Spacer()
         }
-        .frame(maxWidth: .infinity)
+        .adaptiveContentWidth(maxWidth: 480, includeHorizontalPadding: false)
     }
 
     // MARK: Actions

@@ -123,7 +123,7 @@ struct MomentFormView: View {
                         .buttonStyle(.plain)
                     }
                     .sheet(isPresented: $showContactPicker) {
-                        ContactPickerView { names in
+                        ContactPickerView(isPresented: $showContactPicker) { names in
                             let joined = names.joined(separator: ", ")
                             if people.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                                 people = joined

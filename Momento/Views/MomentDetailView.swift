@@ -117,6 +117,7 @@ struct MomentDetailView: View {
                 }
             }
             .padding(20)
+            .adaptiveContentWidth(maxWidth: 480, includeHorizontalPadding: false)
         }
         .background(Color(.systemGroupedBackground))
     }
@@ -128,6 +129,7 @@ struct MomentDetailView: View {
 
                 capsuleContentView
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .adaptiveContentWidth(includeHorizontalPadding: false)
                     .padding(.top, 24)
                     .padding(.bottom, 100)
                     .background(Color(.systemGroupedBackground))

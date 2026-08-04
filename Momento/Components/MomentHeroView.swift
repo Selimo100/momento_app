@@ -5,6 +5,19 @@ struct MomentHeroView: View {
     @AppStorage("accentColorHex") private var accentColorHex = "a0c1b9"
 
     @ScaledMetric(relativeTo: .largeTitle) private var heroHeight: CGFloat = 380
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    /// iPad gets a taller hero so the cover does not feel like a thin band.
+    private var resolvedHeroHeight: CGFloat {
+        horizontalSizeClass == .regular ? heroHeight * 1.25 : heroHeight
+    }
+
+    /// Cover request size, scaled up for the wider iPad layout.
+    private var coverTargetSize: CGSize {
+        horizontalSizeClass == .regular
+            ? CGSize(width: 1600, height: 1200)
+            : CGSize(width: 800, height: 760)
+    }
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -59,12 +72,13 @@ struct MomentHeroView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 20)
+            .adaptiveContentWidth(includeHorizontalPadding: false)
             .padding(.bottom, 28)
         }
         // The cover lives in a background layer so its aspect-fill overflow
         // never grows the hero's own layout size in either direction.
         .frame(maxWidth: .infinity, alignment: .bottom)
-        .frame(height: heroHeight, alignment: .bottom)
+        .frame(height: resolvedHeroHeight, alignment: .bottom)
         .background {
             ZStack {
                 coverBackground
@@ -93,7 +107,7 @@ struct MomentHeroView: View {
         if let cover = moment.coverPhoto {
             AssetThumbnailView(
                 localIdentifier: cover.localIdentifier,
-                targetSize: CGSize(width: 800, height: 760)
+                targetSize: coverTargetSize
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .clipped()

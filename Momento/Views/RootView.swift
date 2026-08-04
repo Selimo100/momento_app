@@ -10,6 +10,28 @@ struct RootView: View {
     @State private var showShield = false
 
     var body: some View {
+        tabs
+            .overlay {
+                if showShield {
+                    PrivacyShieldView()
+                        .transition(.opacity)
+                }
+            }
+            .animation(.easeInOut(duration: 0.15), value: showShield)
+            .onChange(of: scenePhase) { _, phase in
+                switch phase {
+                case .active:
+                    showShield = false
+                default:
+                    // Leaving the foreground always ends the private session, so
+                    // returning to the app requires authenticating again.
+                    showShield = lock.isUnlocked
+                    lock.lock()
+                }
+            }
+    }
+
+    private var tabs: some View {
         TabView {
             Tab("Momento", systemImage: "photo.on.rectangle.angled") {
                 MomentListView()
@@ -22,22 +44,5 @@ struct RootView: View {
             }
         }
         .tint(Color(hex: accentColorHex))
-        .overlay {
-            if showShield {
-                PrivacyShieldView()
-            }
-        }
-        .animation(.easeInOut(duration: 0.15), value: showShield)
-        .onChange(of: scenePhase) { _, phase in
-            switch phase {
-            case .active:
-                showShield = false
-            default:
-                // Leaving the foreground always ends the private session, so
-                // returning to the app requires authenticating again.
-                showShield = lock.isUnlocked
-                lock.lock()
-            }
-        }
     }
 }

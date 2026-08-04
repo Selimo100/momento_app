@@ -42,7 +42,7 @@ struct TimeCapsuleListView: View {
                     lockedSection
                 }
             }
-            .padding(.horizontal, 16)
+            .adaptiveContentWidth()
             .padding(.vertical, 20)
         }
         .background(Color(.systemGroupedBackground))
@@ -267,8 +267,10 @@ struct TimeCapsuleListView: View {
                         .padding(.horizontal, 32)
                 }
             }
+            .adaptiveContentWidth(maxWidth: 480)
 
             Spacer()
         }
+        .frame(maxWidth: .infinity)
     }
 }

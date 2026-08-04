@@ -106,6 +106,7 @@ struct TimeCapsuleSheetView: View {
                     confirmButton
                 }
                 .padding(.horizontal, 20)
+                .adaptiveContentWidth(maxWidth: 560, includeHorizontalPadding: false)
                 .padding(.vertical, 20)
             }
             .background(Color(.systemGroupedBackground))
