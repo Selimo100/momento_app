@@ -16,6 +16,7 @@ struct MomentFormView: View {
     @State private var title = ""
     @State private var momentDescription = ""
     @State private var showValidationError = false
+    @State private var showDiscardConfirmation = false
 
     @State private var hasDate = false
     @State private var isDateRange = false
@@ -122,16 +123,6 @@ struct MomentFormView: View {
                         }
                         .buttonStyle(.plain)
                     }
-                    .sheet(isPresented: $showContactPicker) {
-                        ContactPickerView(isPresented: $showContactPicker) { names in
-                            let joined = names.joined(separator: ", ")
-                            if people.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                                people = joined
-                            } else {
-                                people += ", " + joined
-                            }
-                        }
-                    }
 
                     Button {
                         showLocationPicker = true
@@ -172,13 +163,6 @@ struct MomentFormView: View {
                         }
                     }
                     .buttonStyle(.plain)
-                    .sheet(isPresented: $showLocationPicker) {
-                        LocationPickerView(
-                            locationName: $locationName,
-                            latitude: $locationLatitude,
-                            longitude: $locationLongitude
-                        )
-                    }
 
                     TextField("Small things you want to remember...", text: $notes, axis: .vertical)
                         .lineLimit(2...5)
@@ -191,15 +175,82 @@ struct MomentFormView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button("Cancel") { attemptDismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") { save() }
                         .fontWeight(.semibold)
                 }
             }
+            .sheet(isPresented: $showContactPicker) {
+                ContactPickerView(isPresented: $showContactPicker) { names in
+                    let joined = names.joined(separator: ", ")
+                    if people.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                        people = joined
+                    } else {
+                        people += ", " + joined
+                    }
+                }
+            }
+            .sheet(isPresented: $showLocationPicker) {
+                LocationPickerView(
+                    isPresented: $showLocationPicker,
+                    locationName: $locationName,
+                    latitude: $locationLatitude,
+                    longitude: $locationLongitude
+                )
+            }
+        }
+        .interactiveDismissDisabled(hasUnsavedChanges)
+        .confirmationDialog(
+            isEditing ? "Discard Changes?" : "Discard This Moment?",
+            isPresented: $showDiscardConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button(isEditing ? "Discard Changes" : "Discard Moment", role: .destructive) {
+                dismiss()
+            }
+            Button("Keep Editing", role: .cancel) {}
+        } message: {
+            Text(isEditing
+                 ? "Your edits to this moment will be lost."
+                 : "This moment hasn't been saved yet and will be lost.")
         }
         .onAppear { prefill() }
+    }
+
+    /// Cancel only leaves right away when there is nothing to lose.
+    private func attemptDismiss() {
+        if hasUnsavedChanges {
+            showDiscardConfirmation = true
+        } else {
+            dismiss()
+        }
+    }
+
+    private var hasUnsavedChanges: Bool {
+        switch mode {
+        case .create:
+            return !title.trimmed.isEmpty
+                || !momentDescription.trimmed.isEmpty
+                || !mood.trimmed.isEmpty
+                || !story.trimmed.isEmpty
+                || !people.trimmed.isEmpty
+                || !locationName.trimmed.isEmpty
+                || !notes.trimmed.isEmpty
+                || hasDate
+        case .edit(let moment):
+            return title != moment.title
+                || momentDescription != moment.momentDescription
+                || mood != (moment.mood ?? "")
+                || story != (moment.story ?? "")
+                || people != (moment.people ?? "")
+                || notes != (moment.notes ?? "")
+                || locationName != (moment.locationName ?? "")
+                || layoutType != moment.layout
+                || hasDate != (moment.startDate != nil)
+                || isDateRange != (moment.endDate != nil)
+        }
     }
 
     private func prefill() {
@@ -274,4 +325,8 @@ struct MomentFormView: View {
             dismiss()
         }
     }
+}
+
+private extension String {
+    var trimmed: String { trimmingCharacters(in: .whitespacesAndNewlines) }
 }

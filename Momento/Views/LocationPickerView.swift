@@ -2,11 +2,14 @@ import SwiftUI
 import MapKit
 
 struct LocationPickerView: View {
+    /// Bound to the presenting sheet flag rather than `@Environment(\.dismiss)`,
+    /// so closing the picker can never resolve to the enclosing moment editor.
+    @Binding var isPresented: Bool
+
     @Binding var locationName: String
     @Binding var latitude: Double?
     @Binding var longitude: Double?
 
-    @Environment(\.dismiss) private var dismiss
 
     @State private var searchText = ""
     @State private var searchResults: [MKMapItem] = []
@@ -25,7 +28,7 @@ struct LocationPickerView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button("Cancel") { isPresented = false }
                 }
             }
             .safeAreaInset(edge: .bottom) {
@@ -209,7 +212,7 @@ struct LocationPickerView: View {
         locationName = item.name ?? subtitle(for: item) ?? ""
         latitude = item.location.coordinate.latitude
         longitude = item.location.coordinate.longitude
-        dismiss()
+        isPresented = false
     }
 
     private func subtitle(for item: MKMapItem) -> String? {
