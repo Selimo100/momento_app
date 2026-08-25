@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Show toolchain versions
         run: |
@@ -53,7 +53,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Install SwiftLint
         run: brew list swiftlint || brew install swiftlint
@@ -68,7 +68,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Install XcodeGen
         run: brew install xcodegen
