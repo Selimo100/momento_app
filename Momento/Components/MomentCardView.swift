@@ -112,7 +112,7 @@ struct MomentCardView: View {
             .padding(.horizontal, 9)
             .padding(.vertical, 5)
             .glassEffect(.regular, in: Capsule())
-        } else if moment.photos.count > 0 {
+        } else if !moment.photos.isEmpty {
             HStack(spacing: 4) {
                 Image(systemName: "photo.stack")
                     .font(.caption2.weight(.semibold))

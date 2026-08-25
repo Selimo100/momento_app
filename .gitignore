@@ -1,6 +1,9 @@
 # Xcode
 DerivedData/
+.derived-data/
 build/
+*.xcscmblueprint
+.swiftpm/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -13,7 +16,6 @@ xcuserdata/
 *.xccheckout
 *.moved-aside
 *.xcuserstate
-.agents
 
 # Swift Package Manager
 .build/
@@ -37,6 +39,21 @@ fastlane/test_output/
 *.dSYM.zip
 *.dSYM
 *.xcarchive
+*.mobileprovision
+*.p12
+*.cer
+
+# Local tooling and assistant state
+.agents
+.claude/memory/
+.claude/settings.local.json
+skills-lock.json
+
+# Environment / local overrides
+.env
+.env.local
+*.local.xcconfig
 
 # App-specific and OS noise
 .DS_Store
+*.log

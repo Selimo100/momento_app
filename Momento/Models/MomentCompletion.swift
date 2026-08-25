@@ -51,7 +51,7 @@ extension Moment {
                 systemImage: "square.and.arrow.up",
                 isComplete: hasBeenExported,
                 weight: 10
-            ),
+            )
         ]
     }
 

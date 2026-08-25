@@ -10,7 +10,6 @@ struct LocationPickerView: View {
     @Binding var latitude: Double?
     @Binding var longitude: Double?
 
-
     @State private var searchText = ""
     @State private var searchResults: [MKMapItem] = []
     @State private var selectedItem: MKMapItem?

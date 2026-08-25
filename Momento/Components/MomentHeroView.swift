@@ -40,7 +40,7 @@ struct MomentHeroView: View {
                         heroBadge(icon: "gift.fill", text: "Ready to Reopen",
                                   tint: Color(hex: accentColorHex))
                     } else {
-                        if moment.photos.count > 0 {
+                        if !moment.photos.isEmpty {
                             heroBadge(
                                 icon: "photo.stack",
                                 text: "\(moment.photos.count) \(moment.photos.count == 1 ? "photo" : "photos")"

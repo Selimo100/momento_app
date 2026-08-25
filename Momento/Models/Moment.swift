@@ -26,17 +26,17 @@ final class Moment {
     /// Raw value of ``MomentLayoutType``. Defaulted so existing moments
     /// migrate lightweight and simply render the Story layout.
     var layoutType: String = MomentLayoutType.fallback.rawValue
-    var beforePhotoId: UUID? = nil
-    var afterPhotoId: UUID? = nil
+    var beforePhotoId: UUID?
+    var afterPhotoId: UUID?
 
     /// Private moments are hidden from the normal list and only reachable
     /// through the authenticated Private Moments area.
     var isPrivate: Bool = false
 
     var isTimeCapsule: Bool = false
-    var unlockDate: Date? = nil
-    var lockedAt: Date? = nil
-    var reminderDate: Date? = nil
+    var unlockDate: Date?
+    var lockedAt: Date?
+    var reminderDate: Date?
 
     @Relationship(deleteRule: .cascade, inverse: \MomentPhoto.moment)
     var photos: [MomentPhoto]

@@ -31,7 +31,10 @@ struct ExportSheetView: View {
                         disabled: moment.favoriteCount == 0
                     )
                 } footer: {
-                    Text("Photos will be added to an album in your Apple Photos library. Original photos are never duplicated — existing assets are linked to the album.")
+                    Text(
+                        "Photos will be added to an album in your Apple Photos library. "
+                        + "Original photos are never duplicated — existing assets are linked to the album."
+                    )
                         .font(.caption)
                 }
             }

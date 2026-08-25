@@ -1,0 +1,50 @@
+# SwiftLint configuration for Momento.
+# Run locally with `swiftlint` (see CONTRIBUTING.md); enforced in CI by the
+# "SwiftLint" job in .github/workflows/ci.yml.
+
+included:
+  - Momento
+
+excluded:
+  - build
+  - DerivedData
+
+# SwiftUI view bodies are naturally long and deeply nested; the length rules
+# below are tuned for declarative UI code rather than turned off entirely.
+line_length:
+  warning: 140
+  error: 200
+  ignores_comments: true
+  ignores_urls: true
+
+type_body_length:
+  warning: 400
+  error: 600
+
+file_length:
+  warning: 700
+  error: 1000
+
+function_body_length:
+  warning: 120
+  error: 200
+
+identifier_name:
+  min_length:
+    warning: 2
+    error: 1
+  excluded:
+    - id
+    - to
+
+nesting:
+  type_level: 2
+
+opt_in_rules:
+  - empty_count
+  - explicit_init
+  - first_where
+  - last_where
+  - redundant_nil_coalescing
+  - toggle_bool
+  - unneeded_parentheses_in_closure_argument

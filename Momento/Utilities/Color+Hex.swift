@@ -6,25 +6,25 @@ extension Color {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
         Scanner(string: hex).scanHexInt64(&int)
-        let r = (int >> 16) & 0xFF
-        let g = (int >> 8) & 0xFF
-        let b = int & 0xFF
+        let red = (int >> 16) & 0xFF
+        let green = (int >> 8) & 0xFF
+        let blue = int & 0xFF
         self.init(
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue: Double(b) / 255
+            red: Double(red) / 255,
+            green: Double(green) / 255,
+            blue: Double(blue) / 255
         )
     }
 
     var hexString: String {
-        let ui = UIColor(self)
-        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        ui.getRed(&r, green: &g, blue: &b, alpha: &a)
+        let uiColor = UIColor(self)
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         return String(
             format: "%02x%02x%02x",
-            min(255, Int(r * 255)),
-            min(255, Int(g * 255)),
-            min(255, Int(b * 255))
+            min(255, Int(red * 255)),
+            min(255, Int(green * 255)),
+            min(255, Int(blue * 255))
         )
     }
 }

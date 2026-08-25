@@ -1,0 +1,14 @@
+# Momento has no third-party package manager: it depends only on Apple's SDKs.
+# GitHub Actions is therefore the only ecosystem worth keeping up to date here.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    commit-message:
+      prefix: "ci"
+    labels:
+      - dependencies
+      - ci

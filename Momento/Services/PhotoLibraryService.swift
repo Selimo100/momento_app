@@ -35,6 +35,7 @@ final class PhotoLibraryService: Sendable {
 
     func assetExists(localIdentifier: String) -> Bool {
         let result = PHAsset.fetchAssets(withLocalIdentifiers: [localIdentifier], options: nil)
+        // swiftlint:disable:next empty_count
         return result.count > 0
     }
 }

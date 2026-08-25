@@ -57,16 +57,15 @@ struct TimeCapsuleSheetView: View {
             case .thirtyDays:
                 return cal.date(byAdding: .day, value: 30, to: now)
             case .endOfYear:
-                var c = cal.dateComponents([.year], from: now)
-                c.month = 12; c.day = 31; c.hour = 9; c.minute = 0
-                return cal.date(from: c)
+                var components = cal.dateComponents([.year], from: now)
+                components.month = 12; components.day = 31; components.hour = 9; components.minute = 0
+                return cal.date(from: components)
             case .nextSummer:
-                var c = cal.dateComponents([.year], from: now)
-                c.month = 6; c.day = 21; c.hour = 9; c.minute = 0
-                let thisYear = cal.date(from: c)
-                if let d = thisYear, d > now { return d }
-                c.year = (c.year ?? 2025) + 1
-                return cal.date(from: c)
+                var components = cal.dateComponents([.year], from: now)
+                components.month = 6; components.day = 21; components.hour = 9; components.minute = 0
+                if let thisYear = cal.date(from: components), thisYear > now { return thisYear }
+                components.year = (components.year ?? cal.component(.year, from: now)) + 1
+                return cal.date(from: components)
             case .custom:
                 return nil
             }
@@ -124,16 +123,16 @@ struct TimeCapsuleSheetView: View {
 
     private var modeSection: some View {
         VStack(spacing: 10) {
-            ForEach(CapsuleMode.allCases, id: \.title) { m in
-                modeCard(m)
+            ForEach(CapsuleMode.allCases, id: \.title) { capsuleMode in
+                modeCard(capsuleMode)
             }
         }
     }
 
-    private func modeCard(_ m: CapsuleMode) -> some View {
-        let isSelected = mode == m
+    private func modeCard(_ capsuleMode: CapsuleMode) -> some View {
+        let isSelected = mode == capsuleMode
         return Button {
-            withAnimation(.spring(response: 0.3)) { mode = m }
+            withAnimation(.spring(response: 0.3)) { mode = capsuleMode }
         } label: {
             HStack(spacing: 16) {
                 ZStack {
@@ -142,16 +141,16 @@ struct TimeCapsuleSheetView: View {
                               ? Color(hex: accentColorHex).opacity(0.15)
                               : Color(.tertiarySystemGroupedBackground))
                         .frame(width: 44, height: 44)
-                    Image(systemName: m.icon)
+                    Image(systemName: capsuleMode.icon)
                         .font(.system(size: 18))
                         .foregroundStyle(isSelected ? Color(hex: accentColorHex) : .secondary)
                 }
 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(m.title)
+                    Text(capsuleMode.title)
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundStyle(.primary)
-                    Text(m.subtitle)
+                    Text(capsuleMode.subtitle)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
@@ -203,8 +202,8 @@ struct TimeCapsuleSheetView: View {
                     Text(option.rawValue)
                         .font(.system(size: 15, weight: .medium))
                         .foregroundStyle(.primary)
-                    if option != .custom, let d = option.resolvedDate() {
-                        Text(DateFormatter.momentDate.string(from: d))
+                    if option != .custom, let resolved = option.resolvedDate() {
+                        Text(DateFormatter.momentDate.string(from: resolved))
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }

@@ -1,320 +1,215 @@
+<div align="center">
+
+<img src="docs/assets/momento-icon.png" alt="Momento app icon" width="120">
+
 # Momento
 
-Momento is a local-first iOS app for collecting personal photo moments. Users can create their own moments, add photos from Apple Photos, set cover images, mark favorite photos, and export selected images directly into an album in Apple Photos.
+**A local-first iOS app for turning scattered camera-roll photos into moments worth revisiting.**
 
-The app is intentionally built locally. There is no account, no backend, and no cloud connection. All data stays on the device.
+[![CI](https://github.com/Selimo100/momento/actions/workflows/ci.yml/badge.svg)](https://github.com/Selimo100/momento/actions/workflows/ci.yml)
+![Platform](https://img.shields.io/badge/platform-iOS%2026%2B-lightgrey)
+![Swift](https://img.shields.io/badge/Swift-6.0-orange)
+![SwiftUI](https://img.shields.io/badge/UI-SwiftUI%20%2B%20SwiftData-blue)
+![Backend](https://img.shields.io/badge/backend-none-brightgreen)
 
----
+</div>
 
-## Idea
+## Overview
 
-Beautiful memories often get lost in the regular Photos app. Momento helps users collect special days, trips, holidays, birthdays, events, or small everyday memories in a more personal and structured way.
+A camera roll is chronological, not meaningful. The evening at the lake, the
+trip, the birthday — they all dissolve into one endless scroll.
 
-A moment contains a title, date, description, and related photos. The best photos can be marked as favorites. If needed, the whole moment or only the favorite photos can be exported into a real Apple Photos album.
+Momento is an iOS app that lets you gather the photos that belong together into a
+**moment**: a title, a date range, a mood, a story, the people who were there, a
+place on the map, and the photos themselves. Moments can be presented in
+different layouts, locked behind Face ID, or sealed as a **time capsule** that
+cannot be opened until a date you choose.
 
----
+The app is deliberately local-first. There is **no account, no backend, and no
+analytics**. Photos are never copied — Momento stores only references to assets
+in your Apple Photos library, so deleting a moment never touches your photos, and
+exporting creates a real Photos album from the assets you already own.
 
-## Main Features
+## Features
 
-- Create, edit, and delete moments
-- Save title, date, and description for each moment
-- Select photos from Apple Photos
-- Display photos in a grid
-- Open photos in a detail view
-- Set a cover image for a moment
-- Mark photos as favorites
-- Remove photos from a moment
-- Export all photos of a moment into Apple Photos
-- Export only favorite photos into Apple Photos
-- Edit the album name before export
-- Local storage with SwiftData
-- Privacy-friendly usage without backend or login
+| | |
+| --- | --- |
+| **Moments** | Title, date range, description, mood, story, people, notes, and a location picked from a map. |
+| **Photos by reference** | Pick from Apple Photos via `PhotosPicker`; only asset identifiers are stored. Set a cover photo and mark best shots as favourites. |
+| **Six presentation layouts** | Story, Timeline, Collage, Favorites Only, Photo Dump, and Before/After — chosen per moment. |
+| **Completion score** | A weighted checklist (title, story, cover, five photos, best shot, …) that shows how fleshed out a moment is. |
+| **Export to Apple Photos** | Create an album from all photos or favourites only, with an editable album name and honest handling of partial exports. |
+| **Private Moments** | Moments hidden from the library and reachable only after Face ID / Touch ID, with a privacy shield in the app switcher. |
+| **Time Capsules** | Seal a moment until a chosen date, with a local notification when it unlocks — plus lighter reminders to revisit a moment. |
+| **Surprise me** | Resurface a random moment, a random best shot, something from this month, or something from around this date. |
 
----
+## Tech stack
 
-## Version 1.0 Scope
+### Application
 
-The first version focuses on fully local usage.
+- **Swift 6** with strict concurrency
+- **SwiftUI** — declarative UI, `TabView`-based navigation, `@Observable` services
+- **SwiftData** — on-device persistence with lightweight-migration-safe models
 
-Included in Version 1.0:
+### Apple frameworks
 
-- Local moments
-- Local persistence
-- Apple Photos selection
-- Apple Photos export
-- Favorite photos
-- Cover images
-- Settings
-- Privacy information
+- **PhotosUI / Photos (PhotoKit)** — photo picking, image loading, album export
+- **LocalAuthentication** — Face ID / Touch ID for Private Moments
+- **UserNotifications** — Time Capsule unlock and reminder notifications
+- **Contacts / ContactsUI** — tagging people in a moment
+- **MapKit** — location search and selection
 
-Not included in Version 1.0:
+### Tooling
 
-- Login
-- Backend
-- Shared groups
-- Device-to-device sync
-- iCloud sync
-- Push notifications
-- In-app purchases
-- Ads
+- **XcodeGen** (`project.yml`) as the readable project specification
+- **SwiftLint** for code style, configured in `.swiftlint.yml`
+- **GitHub Actions** for CI, **Xcode Cloud** for device builds
 
----
-
-## Tech Stack
-
-- Swift
-- SwiftUI
-- SwiftData
-- PhotosPicker
-- PhotoKit
-- UserDefaults / AppStorage
-- SF Symbols
-
----
+There are no third-party runtime dependencies.
 
 ## Architecture
 
-The app is split into clear areas:
+```mermaid
+flowchart TD
+    Root["RootView<br/>tabs + privacy shield"] --> Views["Views<br/>screens & sheets"]
+    Views --> Components["Components<br/>reusable SwiftUI views"]
+    Views --> ViewModels["ViewModels"]
+    Views --> Services
+    ViewModels --> Services
+    ViewModels --> Models
+    Services["Services<br/>PhotoLibrary · PhotoExport · ImageLoading<br/>PrivacyLock · TimeCapsule · RandomMemory"] --> Apple["Apple frameworks"]
+    Models["Models<br/>Moment · MomentPhoto"] --> SwiftData[("SwiftData store")]
+```
+
+The layering rule is simple: **views never call system APIs directly.** Every
+interaction with PhotoKit, LocalAuthentication, notifications, or Contacts is
+wrapped in a service, so permission handling and error mapping live in exactly
+one place per capability.
+
+See **[docs/architecture.md](docs/architecture.md)** for the data model, the
+export and privacy flows, and the reasoning behind the persistence decisions.
+
+## Project structure
 
 ```text
-Momento/
-├── App/
-│   └── MomentoApp.swift
-├── Models/
-│   ├── Moment.swift
-│   └── MomentPhoto.swift
-├── Views/
-│   ├── MomentListView.swift
-│   ├── MomentDetailView.swift
-│   ├── MomentFormView.swift
-│   ├── PhotoDetailView.swift
-│   └── SettingsView.swift
-├── ViewModels/
-│   ├── MomentListViewModel.swift
-│   └── MomentDetailViewModel.swift
-├── Services/
-│   ├── PhotoLibraryService.swift
-│   ├── PhotoExportService.swift
-│   └── ImageLoadingService.swift
-├── Components/
-│   ├── MomentCardView.swift
-│   ├── PhotoGridView.swift
-│   ├── EmptyStateView.swift
-│   └── PrimaryButton.swift
-└── Utilities/
-    ├── DateFormatter+App.swift
-    └── PermissionHelpers.swift
+.
+├── Momento/
+│   ├── App/            # MomentoApp entry point, Info.plist, model container
+│   ├── Models/         # SwiftData models: Moment, MomentPhoto, layout, completion
+│   ├── Views/          # One file per screen or sheet
+│   ├── Components/     # Reusable presentational views and photo layouts
+│   ├── ViewModels/     # Screen-scoped state for the list and detail screens
+│   ├── Services/       # All access to PhotoKit, biometrics, notifications
+│   ├── Utilities/      # Date, colour, layout, and permission helpers
+│   └── Assets.xcassets # App icon and accent colour
+├── docs/               # Architecture documentation
+├── .github/            # CI workflow, issue forms, PR template, Dependabot
+├── project.yml         # XcodeGen project specification
+└── Momento.xcodeproj   # Committed Xcode project (built by CI and Xcode Cloud)
 ```
 
----
+## Getting started
 
-## Data Model
+### Prerequisites
 
-### Moment
+- macOS with **Xcode 26** or newer — the app targets iOS 26
+- An iOS 26 Simulator, or an iPhone plus an Apple Developer account for device builds
+- Optional: `brew install xcodegen swiftlint` for project generation and linting
 
-A moment is a personal photo collection.
+### Installation
 
-```swift
-Moment
-- id: UUID
-- title: String
-- date: Date
-- momentDescription: String
-- coverPhotoId: UUID?
-- createdAt: Date
-- updatedAt: Date
-- photos: [MomentPhoto]
+```bash
+git clone git@github.com:Selimo100/momento.git
+cd momento
+open Momento.xcodeproj
 ```
 
-### MomentPhoto
+No dependency installation is required — the app uses only Apple frameworks.
 
-A `MomentPhoto` is a reference to an image from Apple Photos.
+### Running locally
 
-```swift
-MomentPhoto
-- id: UUID
-- localIdentifier: String
-- isFavorite: Bool
-- addedAt: Date
-- moment: Moment?
+Select the **Momento** scheme and an iOS 26 Simulator, then press ⌘R.
+
+To run on a physical device, set your team under
+*Signing & Capabilities* first. Some features are simulator-limited: Face ID can
+be simulated from *Features → Face ID*, and the Photos library will contain only
+the simulator's sample images.
+
+From the command line:
+
+```bash
+xcodebuild build \
+  -project Momento.xcodeproj \
+  -scheme Momento \
+  -destination 'generic/platform=iOS Simulator' \
+  CODE_SIGNING_ALLOWED=NO
 ```
 
-Important: Momento does not store full image files in SwiftData. It only stores references to photos from Apple Photos.
+### Configuration
 
----
+Momento has no environment variables and no secrets: there is no network layer to
+configure. The only build-time configuration lives in `project.yml` and
+`Momento/App/Info.plist` (bundle identifier, version, and the permission usage
+descriptions). Signing is configured per developer and must never be committed.
 
-## Use Cases
+Runtime preferences — accent colour and the default album prefix used on export —
+are stored locally with `@AppStorage` and can be changed in the app's Settings
+tab.
 
-### UC1: Create Moment
+### Linting
 
-The user can create a new moment with a title, date, and optional description.
+```bash
+swiftlint          # check
+swiftlint --fix    # apply autocorrectable rules
+```
 
-### UC2: Edit Moment
+### Tests
 
-The user can edit the title, date, and description of an existing moment.
+The project does not yet have an automated test target; CI verifies that the app
+compiles and that SwiftLint is clean. The pure logic worth covering first is
+listed under *Known gaps* in [docs/architecture.md](docs/architecture.md), and
+contributions there are welcome.
 
-### UC3: Delete Moment
+## Development
 
-The user can delete a moment. Only local Momento data is removed. Original photos in Apple Photos remain untouched.
+- Branch from `main` using `feature/…`, `fix/…`, `docs/…`, `refactor/…`, or `chore/…`.
+- Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
+- Every pull request runs CI: an iOS Simulator build, SwiftLint, and validation of
+  the XcodeGen spec.
+- SwiftData model changes must stay lightweight-migration safe — new stored
+  properties are optional or carry a default.
 
-### UC4: Show Moments
+Details are in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-All saved moments are displayed in an overview.
+## Releases
 
-### UC5: Show Moment Detail
-
-The user can open a moment and view its details, description, and photos.
-
-### UC6: Select Photos
-
-The user can select multiple photos from Apple Photos and add them to a moment.
-
-### UC7: Set Cover Image
-
-A photo can be set as the cover image of a moment.
-
-### UC8: Mark Photo as Favorite
-
-Special photos can be marked as favorites.
-
-### UC9: Remove Photo from Moment
-
-A photo can be removed from a moment without deleting it from Apple Photos.
-
-### UC10: Show Photo Fullscreen
-
-A photo can be opened in a larger detail view.
-
-### UC11: Export Moment to Apple Photos
-
-All photos of a moment can be exported into a new or existing Apple Photos album.
-
-### UC12: Export Favorites Only
-
-Only photos marked as favorites can be exported.
-
-### UC13: Edit Album Name
-
-Before exporting, the user can edit the target Apple Photos album name.
-
-### UC14: Manage Photo Permissions
-
-The app handles full, limited, and denied photo access in a clear and understandable way.
-
-### UC15: Show Settings
-
-The user can view app information, privacy information, and edit the default album prefix.
-
----
+Releases follow semantic versioning (`MAJOR.MINOR.PATCH`) via the target's
+`MARKETING_VERSION`, with `CURRENT_PROJECT_VERSION` as the build number. Changes
+are collected under `Unreleased` in [CHANGELOG.md](CHANGELOG.md) and cut into a
+version section when a build is tagged and distributed through TestFlight.
 
 ## Privacy
 
-Momento is built local-first.
+Momento is built local-first, and the architecture enforces it:
 
-This means:
+- no account, no backend, no analytics, no third-party SDKs
+- the photo library is read only for assets the user explicitly selects
+- albums are created in Apple Photos only after an explicit export action
+- deleting a moment removes Momento's data, never the original photos
+- Private Moments are unlocked per foreground session and re-lock on backgrounding
 
-- There is no account.
-- There is no backend.
-- No data is sent to external servers.
-- Photos are only accessed when the user actively selects them.
-- Exporting to Apple Photos only happens after an active user action.
-- Deleted moments do not remove original photos from Apple Photos.
+## Contributing
 
----
+Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for setup,
+conventions, and the pull request process. Bugs and ideas go through the
+[issue forms](.github/ISSUE_TEMPLATE).
 
-## Apple Photos Access
+## Security
 
-Momento uses Apple APIs to safely select and export photos.
+Please report vulnerabilities privately rather than in a public issue. The
+process is described in [SECURITY.md](SECURITY.md).
 
-Used frameworks:
+## License
 
-- `PhotosUI` for `PhotosPicker`
-- `Photos` for `PhotoKit`
-
-Required permissions in `Info.plist`:
-
-```xml
-<key>NSPhotoLibraryUsageDescription</key>
-<string>Momento needs access to your photos so you can add images to your moments.</string>
-
-<key>NSPhotoLibraryAddUsageDescription</key>
-<string>Momento needs permission to save photos into Apple Photos albums.</string>
-```
-
----
-
-## Export Behavior
-
-When exporting, Momento creates an Apple Photos album with a name like:
-
-```text
-Momento – Summer Evening at the Lake
-```
-
-The user can edit the name before exporting.
-
-Export options:
-
-- Export all photos
-- Export favorites only
-
-If some photos are no longer available, Momento shows a clear message and exports the remaining available photos.
-
----
-
-## Installation and Development
-
-### Requirements
-
-- macOS
-- Xcode
-- iOS Simulator or physical iPhone
-- Apple Developer Account for TestFlight and App Store release
-
-### Run the Project
-
-1. Open the project in Xcode
-2. Select a signing team
-3. Check the bundle identifier
-4. Run the app on a simulator or iPhone
-
----
-
-## App Store Preparation
-
-Before release, the following items need to be completed:
-
-- Create app icon
-- Check launch screen
-- Create App Store screenshots
-- Prepare privacy text
-- Provide a support URL
-- Write App Store description
-- Upload TestFlight build
-- Fill in App Review information
-
----
-
-## Possible Future Features
-
-Future versions could include:
-
-- iCloud sync
-- Shared moments with friends
-- Invitation system
-- Memory flashbacks
-- Yearly recap
-- Search
-- Tags and categories
-- Map view for locations
-- Widgets
-- Export as ZIP or PDF
-- Face ID protection for private moments
-
----
-
-## Project Goal
-
-The goal of Momento is to build a personal, beautiful, and privacy-friendly iOS app that is useful in everyday life and also works well as a portfolio project.
-
-The app should start small, but be built with a clean structure so it can be extended later.
+No license has been chosen yet, so all rights are reserved by default. If you
+would like to reuse any part of this project, please open an issue first.

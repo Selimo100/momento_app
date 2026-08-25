@@ -1,0 +1,44 @@
+name: Feature request
+description: Suggest an improvement or a new capability for Momento.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or background
+      description: What are you trying to do today, and where does the app get in the way?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: How could Momento solve this? Sketches and screenshots are welcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Fits the project constraints
+      description: >
+        Momento is local-first: no account, no backend, no analytics, and photos
+        stay in the user's Apple Photos library.
+      options:
+        - label: This proposal works without a backend or user account.
+          required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+    validations:
+      required: false

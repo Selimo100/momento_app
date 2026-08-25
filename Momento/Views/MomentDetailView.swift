@@ -7,7 +7,7 @@ struct MomentDetailView: View {
     let moment: Moment
     /// When set, this photo is opened automatically once the view appears
     /// (used by "Surprise Me → Random Best Shot").
-    var initialPhoto: MomentPhoto? = nil
+    var initialPhoto: MomentPhoto?
 
     @Environment(\.modelContext) private var context
     @State private var didOpenInitialPhoto = false
@@ -612,7 +612,10 @@ private extension View {
             Button("Move to Private", action: makePrivate)
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("This moment will be hidden from your library and only reachable through Private Moments, protected with \(biometryLabel).")
+            Text(
+                "This moment will be hidden from your library and only reachable "
+                + "through Private Moments, protected with \(biometryLabel)."
+            )
         }
         .confirmationDialog(
             "Move out of Private",

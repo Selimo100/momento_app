@@ -8,8 +8,8 @@ struct TimeCapsuleListView: View {
     /// Private moments stay out of this tab as well.
     private var visibleMoments: [Moment] { allMoments.filter { !$0.isPrivate } }
 
-    private var readyMoments: [Moment]   { visibleMoments.filter { $0.isReadyToReopen } }
-    private var lockedMoments: [Moment]  { visibleMoments.filter { $0.isLocked } }
+    private var readyMoments: [Moment] { visibleMoments.filter { $0.isReadyToReopen } }
+    private var lockedMoments: [Moment] { visibleMoments.filter { $0.isLocked } }
     private var reminderMoments: [Moment] { visibleMoments.filter { $0.reminderDate != nil && !$0.isTimeCapsule } }
     private var hasAnyCapsules: Bool { !readyMoments.isEmpty || !lockedMoments.isEmpty || !reminderMoments.isEmpty }
 

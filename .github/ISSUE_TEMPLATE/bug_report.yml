@@ -1,0 +1,82 @@
+name: Bug report
+description: Report something in the Momento app that does not behave as expected.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a report. Please do not include
+        personal photos, contact details, or other private data in this issue.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What went wrong?
+      placeholder: Exporting favourites creates an empty album.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Moments (list, detail, form)
+        - Photos (picker, grid, layouts)
+        - Export to Apple Photos
+        - Private Moments / Face ID
+        - Time Capsules / notifications
+        - Settings
+        - Other / not sure
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device and iOS version
+      placeholder: iPhone 17 Pro, iOS 26.1 (or iOS Simulator)
+    validations:
+      required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      description: Shown in Settings, e.g. 1.0 (1). Use the commit SHA for local builds.
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Logs, screenshots, or additional context
+      description: Screen recordings are especially helpful for UI issues.
+    validations:
+      required: false
