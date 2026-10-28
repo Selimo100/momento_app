@@ -89,13 +89,18 @@ struct ContactPickerView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { isPresented = false }
+                    Button { isPresented = false } label: {
+                        Label("Cancel", systemImage: "xmark")
+                    }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { confirm() }
-                        .fontWeight(.semibold)
-                        .disabled(selection.isEmpty)
+                    Button { confirm() } label: {
+                        Label("Done", systemImage: "checkmark")
+                    }
+                    .fontWeight(.semibold)
+                    .disabled(selection.isEmpty)
                 }
+                .duoVisibilityPriority(.high)
             }
         }
         .task { await load() }

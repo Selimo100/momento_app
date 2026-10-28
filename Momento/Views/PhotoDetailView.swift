@@ -67,11 +67,12 @@ struct PhotoDetailView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button { dismiss() } label: {
-                        Image(systemName: "xmark")
+                        Label("Close", systemImage: "xmark")
                             .fontWeight(.semibold)
                             .foregroundStyle(.white)
                     }
                 }
+                .duoVisibilityPriority(.high)
                 ToolbarItem(placement: .bottomBar) {
                     if let photo = currentPhoto {
                         actionBar(for: photo)

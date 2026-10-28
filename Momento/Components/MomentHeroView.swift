@@ -6,10 +6,18 @@ struct MomentHeroView: View {
 
     @ScaledMetric(relativeTo: .largeTitle) private var heroHeight: CGFloat = 380
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     /// iPad gets a taller hero so the cover does not feel like a thin band.
+    ///
+    /// Short containers — landscape, and iPhone Duo's folded and outer-display
+    /// poses — get a shorter one instead, so the cover never pushes the
+    /// moment's actual content off screen.
     private var resolvedHeroHeight: CGFloat {
-        horizontalSizeClass == .regular ? heroHeight * 1.25 : heroHeight
+        if verticalSizeClass == .compact {
+            return heroHeight * 0.55
+        }
+        return horizontalSizeClass == .regular ? heroHeight * 1.25 : heroHeight
     }
 
     /// Cover request size, scaled up for the wider iPad layout.
@@ -84,6 +92,10 @@ struct MomentHeroView: View {
                 coverBackground
                 scrim
             }
+            // Lets the cover bleed under a vertical toolbar or tab bar on
+            // iPhone Duo instead of stopping at a hard edge. Available from
+            // iOS 26, so no availability guard is needed here.
+            .backgroundExtensionEffect()
         }
         .clipped()
         .accessibilityElement(children: .combine)

@@ -27,7 +27,9 @@ struct LocationPickerView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { isPresented = false }
+                    Button { isPresented = false } label: {
+                        Label("Cancel", systemImage: "xmark")
+                    }
                 }
             }
             .safeAreaInset(edge: .bottom) {

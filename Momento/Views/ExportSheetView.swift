@@ -42,8 +42,10 @@ struct ExportSheetView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel", action: onCancel)
-                        .disabled(isExporting)
+                    Button(action: onCancel) {
+                        Label("Cancel", systemImage: "xmark")
+                    }
+                    .disabled(isExporting)
                 }
             }
             .overlay {

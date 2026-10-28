@@ -112,8 +112,12 @@ struct TimeCapsuleSheetView: View {
             .navigationTitle("Open Later")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") { dismiss() }
+                // `cancellationAction` rather than `topBarLeading` so the system
+                // pins this to the top of a vertical bar on iPhone Duo.
+                ToolbarItem(placement: .cancellationAction) {
+                    Button { dismiss() } label: {
+                        Label("Cancel", systemImage: "xmark")
+                    }
                 }
             }
         }

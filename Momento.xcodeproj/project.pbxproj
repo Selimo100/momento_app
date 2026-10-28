@@ -59,6 +59,7 @@
 		EA96257E1612940219D47190 /* MomentHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2212ABCA1E1DE8EB1BFC92 /* MomentHeroView.swift */; };
 		EC30C24B33CF3CD8585375DE /* FavoritesOnlyLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E58D94A7B769A0DFA498552 /* FavoritesOnlyLayoutView.swift */; };
 		ED0D670EB0A1C6ABA7B977D0 /* AdaptiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD93ED9ED76F37FCFB75803B /* AdaptiveLayout.swift */; };
+		AA11BB22CC33DD44EE55FF66 /* DuoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA22BB33CC44DD55EE66FF /* DuoLayout.swift */; };
 		F1C7CEB83DCDF68A22198AFE /* MomentCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E5CAFB502A81E030C0033 /* MomentCompletion.swift */; };
 		F22FC5AB657DC3D95D884C3C /* PhotoExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEE9F3EC3E8772694171284 /* PhotoExportService.swift */; };
 		F308740C5228D320FA5E508D /* RandomMemoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3D8C852F53C435D8D65AE9 /* RandomMemoryService.swift */; };
@@ -113,6 +114,7 @@
 		BD98DAC723800F52B1BC5FE3 /* ExportSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSheetView.swift; sourceTree = "<group>"; };
 		C7332CF3A4587E6D96BD436C /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
 		CD93ED9ED76F37FCFB75803B /* AdaptiveLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveLayout.swift; sourceTree = "<group>"; };
+		11AA22BB33CC44DD55EE66FF /* DuoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuoLayout.swift; sourceTree = "<group>"; };
 		CDD8B715500157CF958EF3C7 /* MoodChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChipView.swift; sourceTree = "<group>"; };
 		D130E2336F8AF98BAA8808E5 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		D2B1694960E7526ABFC29727 /* MomentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCardView.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				CD93ED9ED76F37FCFB75803B /* AdaptiveLayout.swift */,
+				11AA22BB33CC44DD55EE66FF /* DuoLayout.swift */,
 				D130E2336F8AF98BAA8808E5 /* Color+Hex.swift */,
 				128FDFB4F72B1C65D3311122 /* DateFormatter+App.swift */,
 				B2EF1B2CBE5D4CC98EADD0D8 /* PermissionHelpers.swift */,
@@ -355,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED0D670EB0A1C6ABA7B977D0 /* AdaptiveLayout.swift in Sources */,
+				AA11BB22CC33DD44EE55FF66 /* DuoLayout.swift in Sources */,
 				A4561A7931E8C38911E23AA0 /* AssetThumbnailView.swift in Sources */,
 				1092EDC3BD08BD45130CBF01 /* BeforeAfterLayoutView.swift in Sources */,
 				C453B3BB4C52772536FB7FE6 /* CollagePhotoLayoutView.swift in Sources */,
@@ -417,8 +421,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 4JP5T76ZNW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Momento/App/Info.plist;
@@ -440,8 +444,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 4JP5T76ZNW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Momento/App/Info.plist;
@@ -495,7 +499,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4JP5T76ZNW;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -560,7 +564,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4JP5T76ZNW;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

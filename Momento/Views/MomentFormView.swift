@@ -174,13 +174,21 @@ struct MomentFormView: View {
             .navigationTitle(isEditing ? "Edit Moment" : "New Moment")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                // Icon *and* title on each item: iPhone Duo needs a symbol to
+                // show an item in a vertical bar, and uses the title in the
+                // overflow menu.
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { attemptDismiss() }
+                    Button { attemptDismiss() } label: {
+                        Label("Cancel", systemImage: "xmark")
+                    }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") { save() }
-                        .fontWeight(.semibold)
+                    Button { save() } label: {
+                        Label("Save", systemImage: "checkmark")
+                    }
+                    .fontWeight(.semibold)
                 }
+                .duoVisibilityPriority(.high)
             }
             .sheet(isPresented: $showContactPicker) {
                 ContactPickerView(isPresented: $showContactPicker) { names in

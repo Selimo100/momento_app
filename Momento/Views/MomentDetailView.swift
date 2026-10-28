@@ -489,9 +489,25 @@ private extension View {
             .toolbarBackground(.hidden, for: .navigationBar)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    GlassIconButton(icon: "chevron.left", action: dismiss)
+                // `cancellationAction` is the placement iPhone Duo expects for a
+                // custom Back control, so it stays pinned at the top of a
+                // vertical bar. The glass circle only reads correctly floating
+                // over the hero image, so a vertical bar gets a plain label.
+                ToolbarItem(placement: .cancellationAction) {
+                    VerticalBarEdgeReader { verticalEdge in
+                        Button(action: dismiss) {
+                            if verticalEdge == nil {
+                                GlassIconLabel(icon: "chevron.left")
+                            } else {
+                                Label("Back", systemImage: "chevron.left")
+                            }
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("Back")
+                    }
                 }
+                .duoVisibilityPriority(.high)
+
                 ToolbarItem(placement: .topBarTrailing) {
                     menu()
                 }

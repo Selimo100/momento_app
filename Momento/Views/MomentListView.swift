@@ -53,14 +53,20 @@ struct MomentListView: View {
             }
             .navigationTitle("Momento")
             .toolbar {
+                // A Label (icon *and* title) rather than a bare Image: iPhone Duo
+                // uses the icon in vertical bars and both in the overflow menu,
+                // and skips items that have neither.
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         viewModel.showingCreateSheet = true
                     } label: {
-                        Image(systemName: "plus")
+                        Label("New Moment", systemImage: "plus")
                             .fontWeight(.semibold)
                     }
                 }
+                // Creating a moment is the primary action here, so it should be
+                // the last thing to collapse into the overflow menu.
+                .duoVisibilityPriority(.high)
             }
             .sheet(isPresented: $viewModel.showingCreateSheet) {
                 MomentFormView(mode: .create) { newMoment in
